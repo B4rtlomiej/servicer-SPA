@@ -1,0 +1,16 @@
+.dropdown-toggle, .dropdown-item {
+    cursor: pointer;
+}
+
+.btn-admin {
+    color: #fff;
+    border-color: #fff;
+}
+
+.btn-admin:hover {
+    background-color: #073642;
+}
+
+.btn-admin:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0,0,0,0.2);
+}
