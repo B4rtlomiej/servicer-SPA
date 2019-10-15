@@ -31,7 +31,7 @@ export class NavComponent implements OnInit {
   }
 
   isAdmin() {
-    return this.authService.decodedToken.role === 'Admin';
+    return this.authService.isAdmin();
   }
 
   logout() {
@@ -41,6 +41,7 @@ export class NavComponent implements OnInit {
   }
 
   setAdminMode() {
+    this.router.navigate(['/users']);
     this.adminMode.emit(true);
   }
 

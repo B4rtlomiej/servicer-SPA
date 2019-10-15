@@ -1,0 +1,36 @@
+<div class="wrapper">
+  <div class="container mt-5">
+    <div style="height: 50px;"></div>
+    <table class="table table-borderless table-dark">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Nazwisko</th>
+          <th scope="col">Nazwa użytkownika</th>
+          <th scope="col">Email</th>
+          <th scope="col">Rola</th>
+          <th scope="col">Ostatinio aktywny</th>
+          <th scope="col">Akcje</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="data-row" *ngFor="let user of users">
+          <th scope="row">{{ user.id }}</th>
+          <td><span class="name-span" [routerLink]="['/users/', user.id]">{{ user.username }} {{ user.username }}</span>
+          </td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.userRole }}</td>
+          <td>{{ user.lastActive }}</td>
+          <td>
+            <div class="btn-group">
+              <button type="button" class="btn btn-info w-100" [routerLink]="['/users/', user.id]">
+                <i class="fa fa-edit mr-1"></i>Edytuj</button>
+              <button type="button" class="btn btn-warning w-100">Dezaktywuj</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -2,6 +2,10 @@
     cursor: pointer;
 }
 
+.dropdown-toggle {
+    margin-left: 27px;
+}
+
 .btn-admin {
     color: #fff;
     border-color: #fff;
@@ -12,5 +16,9 @@
 }
 
 .btn-admin:focus {
-    box-shadow: 0 0 0 0.2rem rgba(0,0,0,0.2);
+    box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.2);
+}
+
+.logged-in-container {
+    margin-right: 60px;
 }

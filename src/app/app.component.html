@@ -1,8 +1,6 @@
-<div *ngIf="adminMode; else elseBlock">
+<div *ngIf="adminMode.isAdminMode; else elseBlock">
     <app-nav-admin (adminMode)="setAdminMode($event)"></app-nav-admin>
-    <div style="margin-top: 100px;"></div>
-    <app-admin-main>
-    </app-admin-main>
+    <div style="margin-top: 56px;"></div>
 </div>
 <ng-template #elseBlock>
     <app-nav (adminMode)="setAdminMode($event)"></app-nav>

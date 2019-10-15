@@ -1,1 +1,13 @@
 @import '../../../node_modules/bootswatch/dist/solar/bootstrap.min.css';
+
+.dropdown-toggle, .dropdown-item {
+    cursor: pointer;
+}
+
+.dropdown-toggle {
+    margin-left: 27px;
+}
+
+.logged-in-container {
+    margin-right: 60px;
+}

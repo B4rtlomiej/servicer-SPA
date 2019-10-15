@@ -1,10 +1,11 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-  <a class="navbar-brand" [routerLink]="['/home']" routerLinkActive="router-link-active">servicer</a>
-
+  <a class="navbar-brand" [routerLink]="['/home']" routerLinkActive="router-link-active">
+    <i class="fa fa-wrench mr-2"></i>servicer
+  </a>
   <div class="mr-auto">
     <ul class="navbar-nav">
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/mytickets']">Zarządzaj użytkownikami</a>
+        <a class="nav-link" [routerLink]="['/users']">Zarządzaj użytkownikami</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/tickets']">Zarządzaj uprawnieniami</a>
@@ -12,16 +13,19 @@
     </ul>
   </div>
 
-  <div class="dropdown mr-5" dropdown>
-    <button type="button" class="btn btn-outline-info mr-3" (click)="setAdminMode()">Panel
-      Użytkownika</button>
-    <a class="dropdown-toggle text-light" dropdownToggle>
-      Witaj {{authService.decodedToken?.unique_name | titlecase}}
-    </a>
-    <div class="dropdown-menu mt-2" *dropdownMenu>
-      <a class="dropdown-item" href="#"><i class="fa fa-user mr-1"></i>Edytuj profil</a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out mr-1"></i>Wyloguj</a>
-    </div>
+  <div class="logged-in-container">
+    <button type="button" class="btn btn-outline-info mr-3" (click)="setAdminMode()">
+      Panel Użytkownika
+    </button>
+    <span class="dropdown" dropdown>
+      <a class="dropdown-toggle text-light" dropdownToggle>
+        Witaj {{authService.decodedToken?.unique_name | titlecase}}
+      </a>
+      <div class="dropdown-menu mt-2" *dropdownMenu>
+        <a class="dropdown-item" href="#"><i class="fa fa-user mr-1"></i>Edytuj profil</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out mr-1"></i>Wyloguj</a>
+      </div>
+    </span>
   </div>
 </nav>

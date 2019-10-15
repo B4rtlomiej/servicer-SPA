@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './_services/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { AdminModeService } from './_services/admin-mode.service';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +11,8 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class AppComponent implements OnInit {
   title = 'servicer';
   jwtHelper = new JwtHelperService();
-  adminMode = false;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, public adminMode: AdminModeService) { }
 
   ngOnInit() {
     const token = localStorage.getItem('token');
@@ -22,6 +22,6 @@ export class AppComponent implements OnInit {
   }
 
   setAdminMode(adminMode: boolean) {
-    this.adminMode = adminMode;
+    this.adminMode.isAdminMode = adminMode;
   }
 }
