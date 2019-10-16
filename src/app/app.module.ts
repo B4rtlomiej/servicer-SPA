@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { BsDropdownModule } from 'ngx-bootstrap';
 import { JwtModule } from '@auth0/angular-jwt';
@@ -21,6 +21,7 @@ import { UserListComponent } from './users/user-list/user-list.component';
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { UserDetailResolver } from './_resolvers/user-detail.resolver';
 import { UserListResolver } from './_resolvers/user-list.resolver';
+import { UserRegisterComponent } from './users/user-register/user-register.component';
 
 export function tokenRetriver() {
    return localStorage.getItem('token');
@@ -37,12 +38,14 @@ export function tokenRetriver() {
       NewTicketComponent,
       NavAdminComponent,
       UserListComponent,
-      UserDetailComponent
+      UserDetailComponent,
+      UserRegisterComponent
    ],
    imports: [
       BrowserModule,
       HttpClientModule,
       FormsModule,
+      ReactiveFormsModule,
       BsDropdownModule.forRoot(),
       RouterModule.forRoot(appRoutes),
       JwtModule.forRoot({

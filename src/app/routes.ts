@@ -10,6 +10,7 @@ import { UserListComponent } from './users/user-list/user-list.component';
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { UserDetailResolver } from './_resolvers/user-detail.resolver';
 import { UserListResolver } from './_resolvers/user-list.resolver';
+import { UserRegisterComponent } from './users/user-register/user-register.component';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent },
@@ -29,7 +30,8 @@ export const appRoutes: Routes = [
         canActivate: [AdminGuard],
         children: [
             { path: 'users', component: UserListComponent, resolve: { users: UserListResolver } },
-            { path: 'users/:id', component: UserDetailComponent, resolve: { user: UserDetailResolver } }
+            { path: 'users/:id', component: UserDetailComponent, resolve: { user: UserDetailResolver } },
+            { path: 'newuser', component: UserRegisterComponent }
         ]
     }
 ];

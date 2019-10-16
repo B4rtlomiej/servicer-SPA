@@ -1,6 +1,6 @@
 <div class="wrapper">
-  <div class="container mt-5">
-    <div style="height: 50px;"></div>
+  <div class="container">
+    <div style="height: 60px;"></div>
     <table class="table table-borderless table-dark">
       <thead>
         <tr>
@@ -9,7 +9,7 @@
           <th scope="col">Nazwa użytkownika</th>
           <th scope="col">Email</th>
           <th scope="col">Rola</th>
-          <th scope="col">Ostatinio aktywny</th>
+          <th scope="col">Ostatnio aktywny</th>
           <th scope="col">Akcje</th>
         </tr>
       </thead>
@@ -21,7 +21,7 @@
           <td>{{ user.username }}</td>
           <td>{{ user.username }}</td>
           <td>{{ user.userRole }}</td>
-          <td>{{ user.lastActive }}</td>
+          <td>{{ user.lastActive | date: 'H:mm, dd/MM/yyyy' }}</td>
           <td>
             <div class="btn-group">
               <button type="button" class="btn btn-info w-100" [routerLink]="['/users/', user.id]">

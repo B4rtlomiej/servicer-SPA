@@ -1,20 +1,39 @@
-<form #registerForm="ngForm" (ngSubmit)="register()">
+<form [formGroup]="registerForm" (ngSubmit)="register()">
   <h2 class="text-center text-primary">Zarejestruj się</h2>
   <hr>
 
   <div class="form-group">
-    <input type="text" class="form-control" name="username" [(ngModel)]="model.username" required
-      placeholder="Nazwa użytkownika">
+    <input type="text" class="form-control" placeholder="Nazwa użytkownika" formControlName="username"
+      [ngClass]="{'is-invalid': registerForm.get('username').errors && registerForm.get('username').touched}">
+    <div class="invalid-feedback">Nazwa użytkownika musi mieć od 6 do 50 znaków.</div>
   </div>
 
   <div class="form-group">
-    <input type="password" class="form-control" name="password" [(ngModel)]="model.password" required
-      placeholder="Hasło">
+    <input type="password" class="form-control" placeholder="Hasło" formControlName="password"
+      [ngClass]="{'is-invalid': registerForm.get('password').errors && registerForm.get('password').touched}">
+    <div class="invalid-feedback">Hasło musi mieć co najmniej 4 znaki.</div>
+  </div>
+
+  <div class="form-group">
+    <input type="password" class="form-control" placeholder="Potwierdź Hasło" formControlName="confirmPassword"
+      [ngClass]="{'is-invalid': registerForm.get('confirmPassword').hasError('required') && registerForm.get('confirmPassword').touched
+                                || registerForm.get('confirmPassword').touched && registerForm.hasError('mismacz')}">
+    <div class="invalid-feedback"
+      *ngIf="registerForm.get('confirmPassword').hasError('required') && registerForm.get('confirmPassword').touched">
+      Potwierdź hasło.
+    </div>
+    <div class="invalid-feedback"
+      *ngIf="registerForm.hasError('mismacz') && registerForm.get('confirmPassword').touched">
+      Hasła nie zgadzają się.
+    </div>
   </div>
 
   <div class="form-group text-center">
-    <button class="btn btn-success" type="submit">Rejestracja</button>
+    <button class="btn btn-success" type="submit" [disabled]="!registerForm.valid">Rejestracja</button>
     <button class="btn btn-default" type="button" (click)="cancel()">Cofnij</button>
   </div>
 
 </form>
+
+<p>Form value: {{ registerForm.value | json }}</p>
+<p>Form status: {{ registerForm.status | json }}</p>
