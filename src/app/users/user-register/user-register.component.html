@@ -19,12 +19,6 @@
         </div>
 
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Nazwa użytkownika" formControlName="username"
-            [ngClass]="{'is-invalid': registerForm.get('username').errors && registerForm.get('username').touched}">
-          <div class="invalid-feedback">Nazwa użytkownika musi mieć od 6 do 50 znaków.</div>
-        </div>
-
-        <div class="form-group">
           <input type="text" class="form-control" placeholder="E-mail" formControlName="email"
             [ngClass]="{'is-invalid': registerForm.get('person.email').errors && registerForm.get('person.email').touched}">
           <div *ngIf="registerForm.get('person.email').hasError('required') && registerForm.get('person.email').touched"
@@ -51,6 +45,12 @@
             <option value="NotSpecified">Nie określono</option>
           </select>
         </div>
+      </div>
+
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Nazwa użytkownika" formControlName="username"
+          [ngClass]="{'is-invalid': registerForm.get('username').errors && registerForm.get('username').touched}">
+        <div class="invalid-feedback">Nazwa użytkownika musi mieć od 6 do 50 znaków.</div>
       </div>
 
       <div class="form-group">
