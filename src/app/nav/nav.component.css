@@ -11,7 +11,12 @@
     border-color: #fff;
 }
 
-.btn-admin:hover {
+.btn-admin:hover, .btn-admin:active {
+    background-color: #073642 !important;
+    border-color: #fff !important;
+}
+
+.btn-admin:active {
     background-color: #073642;
 }
 

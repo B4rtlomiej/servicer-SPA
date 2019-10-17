@@ -27,8 +27,10 @@ export class UserRegisterComponent implements OnInit {
         firstName: ['', [Validators.required, Validators.maxLength(50)]],
         lastName: ['', [Validators.required, Validators.maxLength(50)]],
         email: ['', [Validators.required, Validators.email]],
-        phone: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(9), Validators.pattern('^[0-9]*$')]]
+        phone: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(9), Validators.pattern('^[0-9]*$')]],
+        sex: ['Male']
       }),
+      userRole: ['Agent'],
       username: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(6)]],
       password: ['', [Validators.required, Validators.minLength(4)]],
       confirmPassword: ['', Validators.required]

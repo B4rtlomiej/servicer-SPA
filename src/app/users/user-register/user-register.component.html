@@ -19,6 +19,12 @@
         </div>
 
         <div class="form-group">
+          <input type="text" class="form-control" placeholder="Nazwa użytkownika" formControlName="username"
+            [ngClass]="{'is-invalid': registerForm.get('username').errors && registerForm.get('username').touched}">
+          <div class="invalid-feedback">Nazwa użytkownika musi mieć od 6 do 50 znaków.</div>
+        </div>
+
+        <div class="form-group">
           <input type="text" class="form-control" placeholder="E-mail" formControlName="email"
             [ngClass]="{'is-invalid': registerForm.get('person.email').errors && registerForm.get('person.email').touched}">
           <div *ngIf="registerForm.get('person.email').hasError('required') && registerForm.get('person.email').touched"
@@ -37,27 +43,25 @@
           <div class="invalid-feedback">Proszę podać poprawny numer telefonu.</div>
         </div>
 
-        <!-- Osobny form group/brak walidacji -->
-        <!-- <div class="form-group">
-          <label class="control-label" style="margin-right:10px">Płeć: </label>
-          <label class="radio-inline">
-            <input class="mr-3" type="radio" value="male" formControlName="gender">Mężczyzna
-          </label>
-          <label class="radio-inline ml-3">
-            <input class="mr-3" type="radio" value="female" formControlName="gender">Kobieta
-          </label>
-        </div> -->
+        <div class="form-group">
+          <label for="user-sex">Płeć</label>
+          <select class="form-control custom-select" formControlName="sex" id="user-sex">
+            <option value="Male" selected>Mężczyzna</option>
+            <option value="Female">Kobieta</option>
+            <option value="NotSpecified">Nie określono</option>
+          </select>
+        </div>
       </div>
-
 
       <div class="form-group">
-        <input type="text" class="form-control" placeholder="Nazwa użytkownika" formControlName="username"
-          [ngClass]="{'is-invalid': registerForm.get('username').errors && registerForm.get('username').touched}">
-        <div class="invalid-feedback">Nazwa użytkownika musi mieć od 6 do 50 znaków.</div>
+        <label for="user-role">Rola użytkownika</label>
+        <select class="form-control custom-select" formControlName="userRole" id="user-role">
+          <option value="Agent">Agent</option>
+          <option value="Manager">Manager</option>
+          <option value="Administrator">Administrator</option>
+        </select>
       </div>
 
-      <p>TODO: user role</p>
-      <p>TODO: role</p>
       <p>TODO: address</p>
 
 
