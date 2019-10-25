@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-all-tickets',
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./all-tickets.component.css']
 })
 export class AllTicketsComponent implements OnInit {
-
-  constructor() { }
+  AllTickets: any;
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
+    this.getAllTickets();
   }
-
+  getAllTickets() {
+    this.http.get("http://localhost:5000/api/tickets").subscribe(response =>{
+    this.AllTickets = response;
+  }, error => {
+    console.log(error);
+  })
+  }
 }
