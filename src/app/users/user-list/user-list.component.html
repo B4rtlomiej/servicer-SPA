@@ -16,10 +16,14 @@
       <tbody>
         <tr class="data-row" *ngFor="let user of users">
           <th scope="row">{{ user.id }}</th>
-          <td><span class="name-span" [routerLink]="['/users/', user.id]">{{ user.username }} {{ user.username }}</span>
+          <td>
+            <span class="name-span" [routerLink]="['/users/', user.id]">
+              {{ user.person?.firstName }}
+              {{ user.person?.lastName }}
+            </span>
           </td>
           <td>{{ user.username }}</td>
-          <td>{{ user.username }}</td>
+          <td>{{ user.person?.email }}</td>
           <td>{{ user.userRole }}</td>
           <td>{{ user.lastActive | date: 'H:mm, dd/MM/yyyy' }}</td>
           <td>

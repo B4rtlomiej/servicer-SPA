@@ -30,7 +30,11 @@ export class AuthService {
   }
 
   register(user: User) {
-    return this.http.post(this.baseUrl + 'register', user);
+    return this.http.post(this.baseUrl + 'register/user', user);
+  }
+
+  activate(passwords: any) {
+    return this.http.post(this.baseUrl + 'activate', passwords);
   }
 
   loggedIn() {

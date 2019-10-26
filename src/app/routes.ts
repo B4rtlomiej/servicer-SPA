@@ -11,9 +11,11 @@ import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { UserDetailResolver } from './_resolvers/user-detail.resolver';
 import { UserListResolver } from './_resolvers/user-list.resolver';
 import { UserRegisterComponent } from './users/user-register/user-register.component';
+import { UserActivateComponent } from './users/user-activate/user-activate.component';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent },
+    { path: 'activate/:token', component: UserActivateComponent },
     {
         path: '',
         runGuardsAndResolvers: 'always',

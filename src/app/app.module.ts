@@ -22,6 +22,7 @@ import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { UserDetailResolver } from './_resolvers/user-detail.resolver';
 import { UserListResolver } from './_resolvers/user-list.resolver';
 import { UserRegisterComponent } from './users/user-register/user-register.component';
+import { UserActivateComponent } from './users/user-activate/user-activate.component';
 
 export function tokenRetriver() {
    return localStorage.getItem('token');
@@ -39,7 +40,8 @@ export function tokenRetriver() {
       NavAdminComponent,
       UserListComponent,
       UserDetailComponent,
-      UserRegisterComponent
+      UserRegisterComponent,
+      UserActivateComponent
    ],
    imports: [
       BrowserModule,
