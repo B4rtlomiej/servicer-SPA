@@ -1,33 +1,46 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
   <a class="navbar-brand" [routerLink]="['/home']" routerLinkActive="router-link-active">
-    <i class="fa fa-wrench mr-2"></i>servicer
+    <i class="fa fa-wrench mr-2"></i>
+    servicer
   </a>
   <div class="mr-auto">
     <ul *ngIf="loggedIn()" class="navbar-nav">
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/mytickets']">Moje zgłoszenia</a>
+        <a class="nav-link" [routerLink]="['/mytickets']">
+          Moje zgłoszenia
+        </a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/tickets']">Wszystkie zgłoszenia</a>
+        <a class="nav-link" [routerLink]="['/tickets']">
+          Wszystkie zgłoszenia
+        </a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/newticket']">Nowe zgłoszenie</a>
+        <a class="nav-link" [routerLink]="['/newticket']">
+          Nowe zgłoszenie
+        </a>
       </li>
     </ul>
   </div>
 
   <div *ngIf="loggedIn()" class="logged-in-container">
-    <button *ngIf="isAdmin()" type="button" class="btn btn-admin btn-outline-warning mr-3"
-      (click)="setAdminMode()">Panel
-      Administracyjny</button>
+    <button *ngIf="isAdmin()" type="button" class="btn btn-admin btn-outline-warning mr-3" (click)="setAdminMode()">
+      Panel Administracyjny
+    </button>
     <span class="dropdown" dropdown>
       <a class="dropdown-toggle text-light" dropdownToggle>
         Witaj {{authService.decodedToken?.unique_name | titlecase}}
       </a>
       <div class="dropdown-menu mt-2" *dropdownMenu>
-        <a class="dropdown-item" href="#"><i class="fa fa-user mr-1"></i>Edytuj profil</a>
+        <a class="dropdown-item" href="#">
+          <i class="fa fa-user mr-1"></i>
+          Edytuj profil
+        </a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out mr-1"></i>Wyloguj</a>
+        <a class="dropdown-item" (click)="logout()">
+          <i class="fa fa-sign-out mr-1"></i>
+          Wyloguj
+        </a>
       </div>
     </span>
   </div>
@@ -37,6 +50,8 @@
       [(ngModel)]="model.username">
     <input class="form-control mr-sm-2" type="password" name="password" placeholder="Hasło" required
       [(ngModel)]="model.password">
-    <button [disabled]="!loginForm.valid" class="btn btn-success my-2 my-sm-0" type="submit">Zaloguj</button>
+    <button [disabled]="!loginForm.valid" class="btn btn-success my-2 my-sm-0" type="submit">
+      Zaloguj
+    </button>
   </form>
 </nav>

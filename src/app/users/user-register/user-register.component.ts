@@ -31,14 +31,8 @@ export class UserRegisterComponent implements OnInit {
         sex: ['Male']
       }),
       userRole: ['Agent'],
-      username: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(6)]],
-      password: ['', [Validators.required, Validators.minLength(4)]],
-      confirmPassword: ['', Validators.required]
-    }, { validator: this.arePasswordsMatching });
-  }
-
-  arePasswordsMatching(formGroup: FormGroup) {
-    return formGroup.get('password').value === formGroup.get('confirmPassword').value ? null : { mismatch: true };
+      username: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(6)]]
+    });
   }
 
   register() {
