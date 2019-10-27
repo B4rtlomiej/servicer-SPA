@@ -20,7 +20,7 @@ export class NavComponent implements OnInit {
   login() {
     this.authService.login(this.model).subscribe(next => {
       this.toastr.success('Pomyślnie zalogowano.');
-      this.router.navigate(['/mytickets']);
+      this.router.navigate(['/tickets']);
     }, error => {
       this.toastr.error('Błędny login, lub hasło.');
     });

@@ -1,0 +1,28 @@
+.container { 
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    opacity: .9;
+    background: url('https://disruptservices.io/content/images/2018/08/Picture1-1.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.header {
+    margin: 0;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+.header h1 {
+    font-size: 3.5rem;
+    text-align: center;
+    color:azure;
+}
