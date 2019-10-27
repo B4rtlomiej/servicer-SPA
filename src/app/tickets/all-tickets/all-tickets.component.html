@@ -1,0 +1,36 @@
+<div class="row justify-content-center">
+  <table class="col-md-8 table table-info table-borderless">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nazwa</th>
+        <th scope="col">Priorytet</th>
+        <th scope="col">Temat</th>
+        <th scope="col">Rok Produkcji</th>
+        <th scope="col">Stworzono</th>
+        <th scope="col">Akcje</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="data-row" *ngFor="let ticket of tickets">
+        <th scope="row">{{ ticket.id }}</th>
+        <td>
+          <span class="name-span" [routerLink]="['/tickets/', ticket.id]">
+            {{ ticket.item?.name }}
+          </span>
+        </td>
+        <td>{{ ticket.priority }}</td>
+        <td>{{ ticket.subject }}</td>
+        <td>{{ ticket.item?.productionYear | date: 'yyyy' }}</td>
+        <td>{{ ticket.created | date: 'H:mm, dd/MM/yyyy' }}</td>
+        <td>
+          <div class="btn-group">
+            <button type="button" class="btn btn-success" [routerLink]="['/tickets/', ticket.id]">
+              <i class="fa fa-edit mr-1"></i>Edytuj</button>
+            <button type="button" class="btn btn-danger" (click)="deleteTicket(ticket)">Usuń</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

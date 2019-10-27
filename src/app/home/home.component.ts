@@ -6,19 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  registerMode = false;
 
   constructor() { }
 
   ngOnInit() {
   }
-
-  registerToggle() {
-    this.registerMode = true;
-  }
-
-  cancelRegisterMode(registerMode: boolean) {
-    this.registerMode = registerMode;
-  }
-
 }

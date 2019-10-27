@@ -12,9 +12,9 @@ import { AuthService } from './_services/auth.service';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
-import { MyTicketsComponent } from './my-tickets/my-tickets.component';
-import { AllTicketsComponent } from './all-tickets/all-tickets.component';
-import { NewTicketComponent } from './new-ticket/new-ticket.component';
+import { MyTicketsComponent } from './tickets/my-tickets/my-tickets.component';
+import { AllTicketsComponent } from './tickets/all-tickets/all-tickets.component';
+import { NewTicketComponent } from './tickets/new-ticket/new-ticket.component';
 import { appRoutes } from './routes';
 import { NavAdminComponent } from './nav-admin/nav-admin.component';
 import { UserListComponent } from './users/user-list/user-list.component';
@@ -23,6 +23,9 @@ import { UserDetailResolver } from './_resolvers/user-detail.resolver';
 import { UserListResolver } from './_resolvers/user-list.resolver';
 import { UserRegisterComponent } from './users/user-register/user-register.component';
 import { UserActivateComponent } from './users/user-activate/user-activate.component';
+import { TicketListResolver } from './_resolvers/ticket-list.resolver';
+import { TicketDetailComponent } from './tickets/ticket-detail/ticket-detail.component';
+import { TicketDetailResolver } from './_resolvers/ticket-detail.resolver';
 
 export function tokenRetriver() {
    return localStorage.getItem('token');
@@ -36,6 +39,7 @@ export function tokenRetriver() {
       RegisterComponent,
       MyTicketsComponent,
       AllTicketsComponent,
+      TicketDetailComponent,
       NewTicketComponent,
       NavAdminComponent,
       UserListComponent,
@@ -62,7 +66,9 @@ export function tokenRetriver() {
       AuthService,
       ErrorInterceptorProvider,
       UserDetailResolver,
-      UserListResolver
+      UserListResolver,
+      TicketDetailResolver,
+      TicketListResolver
    ],
    bootstrap: [
       AppComponent
