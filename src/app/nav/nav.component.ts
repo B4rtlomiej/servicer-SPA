@@ -37,7 +37,7 @@ export class NavComponent implements OnInit {
   logout() {
     localStorage.removeItem('token');
     this.toastr.info('Wylogowano.');
-    this.router.navigate(['/home']);
+    this.router.navigate(['/']);
   }
 
   setAdminMode() {
