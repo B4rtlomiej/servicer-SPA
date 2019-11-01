@@ -33,8 +33,8 @@ export class AuthService {
     return this.http.post(this.baseUrl + 'register/user', user);
   }
 
-  activate(passwords: any) {
-    return this.http.post(this.baseUrl + 'activate', passwords);
+  setPassword(passwords: any) {
+    return this.http.post(this.baseUrl + 'setpassword', passwords);
   }
 
   loggedIn() {
