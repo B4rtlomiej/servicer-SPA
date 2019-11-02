@@ -28,9 +28,12 @@
           <td>{{ user.lastActive | date: 'H:mm, dd/MM/yyyy' }}</td>
           <td>
             <div class="btn-group">
-              <button type="button" class="btn btn-info w-100" [routerLink]="['/users/', user.id]">
+              <button type="button" class="btn btn-info w-110" [routerLink]="['/users/', user.id]">
                 <i class="fa fa-edit mr-1"></i>Edytuj</button>
-              <button type="button" class="btn btn-warning w-100">Dezaktywuj</button>
+              <button type="button" class="btn btn-warning w-110" (click)="resetPassword(user.id)">
+                Resetuj hasło
+              </button>
+              <button type="button" class="btn btn-warning w-110">Dezaktywuj</button>
             </div>
           </td>
         </tr>

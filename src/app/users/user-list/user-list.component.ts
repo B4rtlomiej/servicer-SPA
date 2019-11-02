@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../_models/user';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AdminModeService } from 'src/app/_services/admin-mode.service';
+import { UserService } from 'src/app/_services/user.service';
+import { ToastrService } from 'src/app/_services/toastr.service';
 
 @Component({
   selector: 'app-user-list',
@@ -11,12 +13,21 @@ import { AdminModeService } from 'src/app/_services/admin-mode.service';
 export class UserListComponent implements OnInit {
   users: User[];
 
-  constructor(private router: ActivatedRoute, private adminMode: AdminModeService) { }
+  constructor(private router: ActivatedRoute, private userService: UserService,
+    private toastr: ToastrService, private adminMode: AdminModeService) { }
 
   ngOnInit() {
     this.adminMode.isAdminMode = true;
     this.router.data.subscribe(data => {
       this.users = data.users;
+    });
+  }
+
+  resetPassword(id: number) {
+    this.userService.resetPassword(id).subscribe(() => {
+      this.toastr.success('Zresetowano hasło.');
+    }, error => {
+      this.toastr.error(error);
     });
   }
 }

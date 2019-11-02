@@ -19,4 +19,8 @@ export class UserService {
   getUser(id): Observable<User> {
     return this.http.get<User>(this.baseUrl + 'users/' + id);
   }
+
+  resetPassword(id: number) {
+    return this.http.post(this.baseUrl + 'users/' + id + '/resetpassword', { token: localStorage.getItem('token') });
+  }
 }
