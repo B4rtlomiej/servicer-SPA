@@ -1,0 +1,120 @@
+.wrapper {
+    background: url("https://wallpapertag.com/wallpaper/full/8/8/f/238389-free-download-gradient-background-tumblr-2500x1500.jpg");
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.row {
+    margin: 0;
+}
+
+.ticket-container {
+    margin-right: 1.3rem;
+    padding: 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.ticket-container__producer--dell {
+    width: 5rem;
+    height: 5rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    background: url("https://upload.wikimedia.org/wikipedia/commons/4/48/Dell_Logo.svg") center center no-repeat;
+    background-size: cover;
+}
+
+.ticket-container__producer--hp {
+    width: 5rem;
+    height: 5rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    background: url("https://upload.wikimedia.org/wikipedia/commons/a/ad/HP_logo_2012.svg") center center no-repeat;
+    background-size: cover;
+}
+
+a {
+    color: #800080;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.ticket-container__field > h4,
+.ticket-container__body h4 {
+    color: #818181;
+}
+
+.input-container {
+    display: flex;
+}
+
+.input-container i {
+    padding-top: 25px;
+    border-bottom: 1px solid #3bceff;
+    color: #008cba;
+}
+
+input:disabled,
+.select-form:disabled {
+    border-bottom: 1px solid gray;
+    background-color: transparent;
+    width: 89%;
+    -webkit-appearance: none;
+}
+
+input,
+.select-form {
+    border: 0;
+    border-bottom: 1px solid #3bceff;
+    background-color: transparent;
+    font-size: 1.640625rem;
+    font-weight: 300;
+    line-height: 1.2;
+    padding: 0;
+    color: #000;
+    width: 85.5%;
+}
+
+.select-form {
+    width: 89%;
+    margin-bottom: 31.12px;
+}
+
+input:focus,
+.select-form:focus {
+    box-shadow: none;
+    background-color: transparent;
+}
+
+.ticket-container__body h3 {
+    margin-top: 23.5px;
+    margin-bottom: 2rem;
+    width: 89%;
+    padding-bottom: 5px;
+    border-bottom: 1px solid gray;
+}
+
+.container-line {
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    margin: 1.5rem 0 2rem 0;
+}
+
+.notes-container {
+    padding: 1rem;
+    border: 1px solid gray;
+    border: 1px solid rgba(0, 0, 0, 0.2)
+}
+
+.button-div {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.edit-button {
+    margin: 5px;
+}

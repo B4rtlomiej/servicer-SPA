@@ -24,6 +24,10 @@ export class TicketService {
     return this.http.post(this.baseUrl + 'tickets', ticket);
   }
 
+  updateTicket(ticket: Ticket) {
+    return this.http.put(this.baseUrl + 'tickets/' + ticket.id, ticket);
+  }
+
   deleteTicket(id: number) {
     return this.http.delete(this.baseUrl + 'tickets/' + id);
   }

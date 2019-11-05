@@ -16,7 +16,7 @@
         <th scope="row">{{ ticket.id }}</th>
         <td>
           <span class="name-span" [routerLink]="['/tickets/', ticket.id]">
-            {{ ticket.item?.name }}
+            {{ ticket.item?.productSpecification?.series }} {{ ticket.item?.productSpecification?.name }}
           </span>
         </td>
         <td>{{ ticket.priority }}</td>
