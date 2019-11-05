@@ -14,6 +14,10 @@ import { registerOutsideClick } from 'ngx-bootstrap';
 })
 export class UserListComponent implements OnInit {
   users: User[];
+  roleList = [{value: 'Admin', display: 'Admin'},
+              {value: 'Manager', display: 'Manager'},
+              {value: 'Agent', display: 'Agent'}];
+  userParams: any = {};
   pagination: Pagination;
 
   constructor(private router: ActivatedRoute, private userService: UserService,
@@ -33,8 +37,12 @@ export class UserListComponent implements OnInit {
     this.loadUsers();
   }
 
+  resetFilters(){
+    this.userParams.userRole = null;
+    this.loadUsers();
+  }
   loadUsers(){
-    this.userService.getUsers(this.pagination.currentPage, this.pagination.itemsPerPage)
+    this.userService.getUsers(this.pagination.currentPage, this.pagination.itemsPerPage, this.userParams)
     .subscribe((res: PaginatedResult<User[]>)=> {
       this.users = res.result;
       this.pagination = res.pagination;

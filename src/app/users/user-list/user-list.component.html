@@ -1,5 +1,22 @@
 <div class="wrapper">
   <div class="container">
+   
+    <form class="form-inline" #form="ngForm" (ngSubmint) ="loadUsers()" novalidate>
+      
+      <div class="form=group px-2">'
+        <label for="userRole">Rola</label>
+        <select class="form-control ml-1" style="width: 130px" id="userRole"
+        [(ngModel)]="userParams.userRole" name="userRole">
+        <option *ngFor="let role of roleList" [value]="role.value">
+          {{role.display}}
+        </option>
+      </select>
+      </div>
+
+      <button type='submit' class="btn btn-primary" style="margin-left:10px">Zastosuj filtry</button>
+      <button type='button' class="btn btn-info" (click)="resetFilters()" style="margin-left:10px">Resetuj filtry</button>
+    </form>
+
     <div style="height: 60px;"></div>
     <table class="table table-borderless table-dark">
       <thead>
