@@ -1,3 +1,116 @@
-<p style="text-align: center;">
-  {{ ticket | json}}
-</p>
+<div class="wrapper">
+  <div style="margin-top: 125px;"></div>
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-7 ticket-container">
+      <div class="ticket-container__header row">
+        <div class="col-md-3">
+          <div class="ticket-container__producer--dell ml-5"
+            *ngIf="ticket.item.productSpecification.manufacturer == 'Dell'">
+          </div>
+          <div class="ticket-container__producer--hp ml-5"
+            *ngIf="ticket.item.productSpecification.manufacturer == 'HP'">
+          </div>
+        </div>
+        <div class="ticket-container__field col-sm-3">
+          <h4>Zgłoszenie</h4>
+          <h3>Z-{{ ticket.id }}</h3>
+        </div>
+        <div class="ticket-container__field col-md-3">
+          <h4>Zgłaszający</h4>
+          <a href="/">
+            <h3>{{ ticket.item.customer.person.firstName }} {{ ticket.item.customer.person.lastName }}</h3>
+          </a>
+        </div>
+        <div class="ticket-container__field col-md-3">
+          <h4>Stworzono</h4>
+          <h3>{{ ticket.created | date: 'dd/MM/yyyy'}}</h3>
+        </div>
+      </div>
+      <hr class="container-line">
+      <div class="ticket-container__body">
+        <form [formGroup]="editForm" (ngSubmit)="editTicket()">
+          <div class="row">
+            <div class="col-1"></div>
+            <div class="col-5">
+              <h4>Temat</h4>
+              <div class="input-container">
+                <input type="text" class="form-control" formControlName="subject"
+                  [ngClass]="{'is-invalid': editForm.get('subject').errors && editForm.get('subject').touched}">
+                <div class="invalid-feedback">Temat jest wymagany. Maksymalna liczba znaków to 100.</div>
+                <i class="fa fa-pencil" *ngIf="!isViewMode"></i>
+              </div>
+            </div>
+            <div class="col-5">
+              <h4>Ostatnio modyfikowano</h4>
+              <h3>TODO-{{ ticket.created | date: 'dd/MM/yyyy' }}</h3>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-1"></div>
+            <div class="col-5">
+              <h4>Status</h4>
+              <select class="form-control select-form" formControlName="status">
+                <option value="New">Nowe</option>
+                <option value="WorkedOn">W trakcie</option>
+                <option value="Closed">Zamknięte</option>
+              </select>
+            </div>
+            <div class="col-5">
+              <h4>Priorytet</h4>
+              <select class="form-control select-form" formControlName="priority">
+                <option value="Low">Niski</option>
+                <option value="Medium">Średni</option>
+                <option value="High">Wysoki</option>
+              </select>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-1"></div>
+            <div class="col-5">
+              <h4>Model</h4>
+              <a href="/">
+                <h3>{{ ticket.item?.productSpecification?.series }} {{ ticket.item?.productSpecification?.name }}</h3>
+              </a>
+            </div>
+            <div class="col-5">
+              <h4>Rocznik</h4>
+              <h3>{{ ticket.item?.productionYear | date: 'yyyy' }}</h3>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-1"></div>
+            <div class="col-5">
+              <h4>Opis</h4>
+              <div class="input-container">
+                <input type="text" class="form-control" formControlName="description"
+                  [ngClass]="{'is-invalid': editForm.get('description').errors && editForm.get('description').touched}">
+                <i class="fa fa-pencil" *ngIf="!isViewMode"></i>
+              </div>
+            </div>
+            <div class="col-5">
+              <h4>Źródło</h4>
+              <h3>{{ ticket.origin }}</h3>
+            </div>
+            <div class="col-1"></div>
+          </div>
+        </form>
+      </div>
+      <div class="button-div">
+        <button class="btn btn-primary edit-button" (click)="editTicket()" *ngIf="isViewMode">Edytuj</button>
+        <button class="btn btn-info edit-button w-10" (click)="cancel()" *ngIf="!isViewMode">Odrzuć</button>
+        <button class="btn btn-primary edit-button w-10" (click)="update()" *ngIf="!isViewMode">Zapisz</button>
+
+      </div>
+    </div>
+
+    <div class="notes-container col-md-3">
+      <div class="notes-container__header">
+        <h1>Notatki</h1>
+      </div>
+      <hr class="container-line">
+      <div class="notes-container__body">
+        <p>lorem ipsum</p>
+        <p>{{ editForm.value | json }}</p>
+        <p>{{ ticket | json }}</p>
+      </div>
+    </div>
+  </div>
+</div>
