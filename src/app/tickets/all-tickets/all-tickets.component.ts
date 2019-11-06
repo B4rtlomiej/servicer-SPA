@@ -25,7 +25,6 @@ export class AllTicketsComponent implements OnInit {
   }
   pageChanged(event: any): void {
     this.pagination.currentPage = event.page;
-    console.log(this.pagination.currentPage);
     this.loadTicket();
   }
 

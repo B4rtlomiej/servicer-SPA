@@ -14,14 +14,22 @@ import { registerOutsideClick } from 'ngx-bootstrap';
 })
 export class UserListComponent implements OnInit {
   users: User[];
-  roleList = [{value: 'Admin', display: 'Admin'},
-              {value: 'Manager', display: 'Manager'},
-              {value: 'Agent', display: 'Agent'}];
+  roleList = [
+    { value: 'Admin', display: 'Admin' },
+    { value: 'Manager', display: 'Manager' },
+    { value: 'Agent', display: 'Agent' }
+  ];
+  activeInactiveList = [
+    { value: 'true', display: 'Active' },
+    { value: 'false', display: 'Inactive' }
+  ];
+
   userParams: any = {};
   pagination: Pagination;
 
-  constructor(private router: ActivatedRoute, private userService: UserService,
-    private toastr: ToastrService, private adminMode: AdminModeService) { }
+  constructor(private router: ActivatedRoute,private userService: UserService,private toastr: ToastrService,
+    private adminMode: AdminModeService
+  ) { }
 
   ngOnInit() {
     this.adminMode.isAdminMode = true;
@@ -29,33 +37,43 @@ export class UserListComponent implements OnInit {
       this.users = data.users.result;
       this.pagination = data.users.pagination;
     });
+    this.userParams.isActive = true;
+    this.userParams.activityDescending = true;
   }
 
   pageChanged(event: any): void {
     this.pagination.currentPage = event.page;
-    console.log(this.pagination.currentPage);
     this.loadUsers();
   }
 
-  resetFilters(){
-    this.userParams.userRole = null;
+  resetFilters() {
+    this.userParams.userRole = "Agent";
+    this.userParams.isActive = true;
+    this.userParams.activityDescending = true;
     this.loadUsers();
   }
-  loadUsers(){
-    this.userService.getUsers(this.pagination.currentPage, this.pagination.itemsPerPage, this.userParams)
-    .subscribe((res: PaginatedResult<User[]>)=> {
-      this.users = res.result;
-      this.pagination = res.pagination;
-    },
-    error => {
-      this.toastr.error(error);
-    });
+
+  loadUsers() {
+    this.userService
+      .getUsers(this.pagination.currentPage,this.pagination.itemsPerPage,this.userParams)
+      .subscribe(
+        (res: PaginatedResult<User[]>) => {
+          this.users = res.result;
+          this.pagination = res.pagination;
+        },
+        error => {
+          this.toastr.error(error);
+        }
+      );
   }
   resetPassword(id: number) {
-    this.userService.resetPassword(id).subscribe(() => {
-      this.toastr.success('Zresetowano hasło.');
-    }, error => {
-      this.toastr.error(error);
-    });
+    this.userService.resetPassword(id).subscribe(
+      () => {
+        this.toastr.success('Zresetowano hasło.');
+      },
+      error => {
+        this.toastr.error(error);
+      }
+    );
   }
 }
