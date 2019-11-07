@@ -22,11 +22,20 @@
       <div class="form-group">
         <label for="user-role">Typ usertki</label>
         <select class="form-control custom-select" formControlName="type" id="type">
-          <option value="Mechanical">Mechaniczna</option>
-          <option value="Electrical">Elektryczna</option>
-          <option value="Other">Inna</option>
+          <option value="1">Mechaniczna</option>
+          <option value="2">Elektryczna</option>
+          <option value="3">Inna</option>
         </select>
       </div>
+
+      <div class="form-group">
+          <label for="user-role">Model</label>
+          <select class="form-control custom-select" formControlName="itemid" id="itemid">
+            <option value="1">HP</option>
+            <option value="2">Apple</option>
+            <option value="3">Dell</option>
+          </select>
+        </div>
 
       <div class="form-group">
         <label for="description">Opis</label>

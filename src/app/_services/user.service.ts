@@ -28,7 +28,9 @@ export class UserService {
     if (userParams != null && userParams.isActive !=null && userParams.isActive !==undefined) {
       params = params.append('isActive', userParams.isActive);
     }
-
+    if (userParams != null && userParams.orderBy !=null && userParams.orderBy !==undefined) {
+      params = params.append('orderBy', userParams.orderBy);
+    }
     return this.http
       .get<User[]>(this.baseUrl + 'users', { observe: 'response', params })
       .pipe(

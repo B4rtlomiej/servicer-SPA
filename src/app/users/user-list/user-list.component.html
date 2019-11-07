@@ -1,7 +1,6 @@
 <div class="wrapper">
-  <div class="container">
-   
-    <form class="form-inline" #form="ngForm" (ngSubmit)="loadUsers()" novalidate>
+  <div class="container" style="margin-top: 3%;">
+    <form class="form-inline " #form="ngForm" (ngSubmit)="loadUsers()" novalidate>
        
       <div class="form=group px-2">
           <label for="userRole">Rola</label>
@@ -14,7 +13,7 @@
       </div>
 
       <div>
-          <label for="isActive">Enabled\Disabled</label>
+          <label for="isActive">Status</label>
               <select class="form-control ml-2" style="width: 130px" id="isActive"
                    [(ngModel)]="userParams.isActive" name="isActive">
               <option *ngFor="let activeInactive of activeInactiveList" [value]="activeInactive.value">
@@ -22,12 +21,19 @@
              </option>
             </select>
       </div>
-    <div>
-      <button type='submit' class="btn btn-primary" style="margin-left:10px">Zastosuj filtry</button>
-      <button type='button' class="btn btn-info" (click)="resetFilters()" style="margin-left:10px">Resetuj filtry</button>
+      <div class="btn-group float-right" style="margin-top: 2%;">
+        <button type='submit' class="btn btn-primary" style="margin-left:10px">Zastosuj filtry</button>
+        <button type='button' class="btn btn-info" (click)="resetFilters()" style="margin-left:10px">Resetuj filtry</button>
+      </div>
+      <div class="col">
+        <div class="btn-group float-right">
+          <button type="button" name="orderBy" class="btn btn-primary" btnRadio ="lastActive"
+          [(ngModel)]="userParams.orderBy" (click)="loadUsers()">Last Active</button>
+          <button type="button" name="orderBy" class="btn btn-primary" btnRadio ="lastCreated"
+          [(ngModel)]="userParams.orderBy" (click)="loadUsers()">Last Created</button>
+        </div>
       </div>
     </form>
-
     <div style="height: 60px;"></div>
     <table class="table table-borderless table-dark">
       <thead>

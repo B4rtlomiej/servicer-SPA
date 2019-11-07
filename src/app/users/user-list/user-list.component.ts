@@ -5,7 +5,6 @@ import { AdminModeService } from 'src/app/_services/admin-mode.service';
 import { UserService } from 'src/app/_services/user.service';
 import { ToastrService } from 'src/app/_services/toastr.service';
 import { Pagination, PaginatedResult } from 'src/app/_models/pagination';
-import { registerOutsideClick } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-user-list',
@@ -37,8 +36,9 @@ export class UserListComponent implements OnInit {
       this.users = data.users.result;
       this.pagination = data.users.pagination;
     });
+    this.userParams.userRole = "Admin";
     this.userParams.isActive = true;
-    this.userParams.activityDescending = true;
+    this.userParams.orderBy ="lastActive";
   }
 
   pageChanged(event: any): void {
@@ -47,9 +47,9 @@ export class UserListComponent implements OnInit {
   }
 
   resetFilters() {
-    this.userParams.userRole = "Agent";
+    this.userParams.userRole = "Admin";
     this.userParams.isActive = true;
-    this.userParams.activityDescending = true;
+    this.userParams.orderBy ="lastActive";
     this.loadUsers();
   }
 

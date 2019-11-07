@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { BsDropdownModule, PaginationModule } from 'ngx-bootstrap';
+import { BsDropdownModule, PaginationModule, ButtonsModule } from 'ngx-bootstrap';
 import { JwtModule } from '@auth0/angular-jwt';
 
 import { AppComponent } from './app.component';
@@ -54,6 +54,7 @@ export function tokenRetriver() {
       ReactiveFormsModule,
       BsDropdownModule.forRoot(),
       PaginationModule.forRoot(),
+      ButtonsModule.forRoot(),
       RouterModule.forRoot(appRoutes),
       JwtModule.forRoot({
          config: {

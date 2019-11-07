@@ -1,13 +1,46 @@
+<form class="form-inline" style="margin-left: 50%; margin-bottom: 1%;" #form="ngForm" (ngSubmit)="loadTicket()" novalidate>
+    
+  <div class="form=group px-2">
+    <label for="priority">Priorytet</label>
+        <select class="form-control ml-1" style="width: 130px" id="status"
+              [(ngModel)]="ticketParams.status" name="status">
+           <option *ngFor="let status of statuses" [value]="status.value">
+              {{status.display}}
+          </option>
+        </select>
+</div>
+    <div class="form=group px-2">
+        <label for="priority">Priorytet</label>
+            <select class="form-control ml-1" style="width: 130px" id="priority"
+                  [(ngModel)]="ticketParams.priority" name="priority">
+               <option *ngFor="let priority of priorities" [value]="priority.value">
+                  {{priority.display}}
+              </option>
+            </select>
+    </div>
+    <div class="btn-group float-right" style="margin-top: 2%">
+      <button type='submit' class="btn btn-primary" style="margin-left:10px">Zastosuj filtry</button>
+      <button type='button' class="btn btn-info" style="margin-left:10px"(click)="resetFilters()">Resetuj filtry</button> 
+        <button type="button" name="orderBy" class="btn btn-primary" style="margin-left:10px" btnRadio ="lastOpen"
+        [(ngModel)]="ticketParams.orderBy" (click)="loadTicket()">Last Open</button>
+        <button type="button" name="orderBy" class="btn btn-primary" btnRadio ="lastClosed"
+        [(ngModel)]="ticketParams.orderBy" (click)="loadTicket()">Last Closed</button>
+      </div>
+  </form>
+
 <div class="row justify-content-center">
-  <table class="col-md-8 table table-info table-borderless">
+  <table class="col-md-8 table table-info ">
     <thead>
       <tr>
         <th scope="col">Id</th>
         <th scope="col">Nazwa</th>
         <th scope="col">Priorytet</th>
+        <th scope="col">Status</th>
         <th scope="col">Temat</th>
+        <th scope="col">Opis</th>
         <th scope="col">Rok Produkcji</th>
         <th scope="col">Stworzono</th>
+        <th scope="col">Zamknięto</th>
         <th scope="col">Akcje</th>
       </tr>
     </thead>
@@ -20,9 +53,12 @@
           </span>
         </td>
         <td>{{ ticket.priority }}</td>
+        <td>{{ ticket.status }}</td>
         <td>{{ ticket.subject }}</td>
+        <td>{{ ticket.description }}</td>
         <td>{{ ticket.item?.productionYear | date: 'yyyy' }}</td>
         <td>{{ ticket.created | date: 'H:mm, dd/MM/yyyy' }}</td>
+        <td>{{ ticket.closed | date: 'H:mm, dd/MM/yyyy' }}</td>
         <td>
           <div class="btn-group">
             <button type="button" class="btn btn-success" [routerLink]="['/tickets/', ticket.id]">

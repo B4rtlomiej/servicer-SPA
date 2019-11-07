@@ -14,7 +14,7 @@ export class TicketService {
 
   constructor(private http: HttpClient) { }
 
-  getTickets(page?, itemsPerPage?): Observable<PaginatedResult<Ticket[]>> {
+  getTickets(page?, itemsPerPage?, ticketParams?): Observable<PaginatedResult<Ticket[]>> {
     const paginatedResult: PaginatedResult<Ticket[]> = new PaginatedResult<Ticket[]>();
     
     let params = new HttpParams();
@@ -24,6 +24,15 @@ export class TicketService {
       params = params.append('pageSize', itemsPerPage);
     }
 
+    if (ticketParams != null && ticketParams.status !=null && ticketParams.status !==undefined) {
+      params = params.append('status', ticketParams.status);
+    }
+    if (ticketParams != null && ticketParams.priority !=null && ticketParams.priority !==undefined) {
+      params = params.append('priority', ticketParams.priority);
+    }
+    if (ticketParams != null && ticketParams.orderBy !=null && ticketParams.orderBy !==undefined) {
+      params = params.append('orderBy', ticketParams.orderBy);
+    }
     return this.http.get<Ticket[]>(this.baseUrl + 'tickets', {observe: 'response', params})
     .pipe(
       map(response => {
