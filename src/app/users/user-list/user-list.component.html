@@ -1,5 +1,41 @@
 <div class="wrapper">
   <div class="container">
+    <form class="form-inline " #form="ngForm" (ngSubmit)="loadUsers()" novalidate>
+
+      <div class="px-2">
+        <label for="userRole">Rola</label>
+        <select class="form-control ml-1" style="width: 130px" id="userRole" [(ngModel)]="userParams.userRole"
+          name="userRole">
+          <option *ngFor="let role of roleList" [value]="role.value">
+            {{role.display}}
+          </option>
+        </select>
+      </div>
+
+      <div>
+        <label for="isActive">Status</label>
+        <select class="form-control ml-2" style="width: 130px" id="isActive" [(ngModel)]="userParams.isActive"
+          name="isActive">
+          <option *ngFor="let activeInactive of activeInactiveList" [value]="activeInactive.value">
+            {{activeInactive.display}}
+          </option>
+        </select>
+      </div>
+      <div class="btn-group float-right" style="margin-top: 2%;">
+        <button type='submit' class="btn btn-primary" style="margin-left:10px">Zastosuj filtry</button>
+        <button type='button' class="btn btn-info" (click)="resetFilters()" style="margin-left:10px">
+          Resetuj filtry
+        </button>
+      </div>
+      <div class="col">
+        <div class="btn-group float-right">
+          <button type="button" name="orderBy" class="btn btn-primary" btnRadio="lastActive"
+            [(ngModel)]="userParams.orderBy" (click)="loadUsers()">Last Active</button>
+          <button type="button" name="orderBy" class="btn btn-primary" btnRadio="lastCreated"
+            [(ngModel)]="userParams.orderBy" (click)="loadUsers()">Last Created</button>
+        </div>
+      </div>
+    </form>
     <div style="height: 60px;"></div>
     <table class="table table-borderless table-dark">
       <thead>
@@ -40,4 +76,9 @@
       </tbody>
     </table>
   </div>
-</div>
+
+  <div class="d-flex justify-content-center">
+    <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [(ngModel)]="pagination.currentPage"
+      [itemsPerPage]="pagination.itemsPerPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;"
+      nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+  </div>

@@ -8,15 +8,22 @@ import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class UserListResolver implements Resolve<User[]> {
-    constructor(private userService: UserService, private router: Router, private toastr: ToastrService) { }
+  pageNumber = 1;
+  pageSize = 5;
 
-    resolve(route: ActivatedRouteSnapshot): Observable<User[]> {
-        return this.userService.getUsers().pipe(
-            catchError(error => {
-                this.toastr.error(error);
-                this.router.navigate(['/home']);
-                return of(null);
-            })
-        );
-    }
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private toastr: ToastrService
+  ) { }
+
+  resolve(route: ActivatedRouteSnapshot): Observable<User[]> {
+    return this.userService.getUsers(this.pageNumber, this.pageSize).pipe(
+      catchError(error => {
+        this.toastr.error(error);
+        this.router.navigate(['/home']);
+        return of(null);
+      })
+    );
+  }
 }
