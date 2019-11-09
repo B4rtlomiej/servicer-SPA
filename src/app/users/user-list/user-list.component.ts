@@ -26,7 +26,7 @@ export class UserListComponent implements OnInit {
   userParams: any = {};
   pagination: Pagination;
 
-  constructor(private router: ActivatedRoute,private userService: UserService,private toastr: ToastrService,
+  constructor(private router: ActivatedRoute, private userService: UserService, private toastr: ToastrService,
     private adminMode: AdminModeService
   ) { }
 
@@ -36,9 +36,9 @@ export class UserListComponent implements OnInit {
       this.users = data.users.result;
       this.pagination = data.users.pagination;
     });
-    this.userParams.userRole = "Admin";
+    this.userParams.userRole = 'Admin';
     this.userParams.isActive = true;
-    this.userParams.orderBy ="lastActive";
+    this.userParams.orderBy = 'lastActive';
   }
 
   pageChanged(event: any): void {
@@ -47,15 +47,15 @@ export class UserListComponent implements OnInit {
   }
 
   resetFilters() {
-    this.userParams.userRole = "Admin";
+    this.userParams.userRole = 'Admin';
     this.userParams.isActive = true;
-    this.userParams.orderBy ="lastActive";
+    this.userParams.orderBy = 'lastActive';
     this.loadUsers();
   }
 
   loadUsers() {
     this.userService
-      .getUsers(this.pagination.currentPage,this.pagination.itemsPerPage,this.userParams)
+      .getUsers(this.pagination.currentPage, this.pagination.itemsPerPage, this.userParams)
       .subscribe(
         (res: PaginatedResult<User[]>) => {
           this.users = res.result;
