@@ -6,6 +6,7 @@ export interface User {
     lastActive: Date;
     userRole: string;
     person: Person;
+    isActive: boolean;
     // firstName: string;
     // lastName: string;
     // add optionals with ? for detail; like interests?: string; photos?: Photo[];

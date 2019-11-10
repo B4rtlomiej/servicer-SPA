@@ -32,6 +32,10 @@
     font-size: 0.9rem;
 }
 
+.btn-change-active {
+    width: 100px;
+}
+
 .name-span {
     color: rgb(107, 171, 218);
     cursor: pointer;

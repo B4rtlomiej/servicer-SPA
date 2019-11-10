@@ -54,4 +54,8 @@ export class UserService {
       token: localStorage.getItem('token')
     });
   }
+
+  changeIsActive(id: number) {
+    return this.http.post(this.baseUrl + 'users/' + id + '/changeisactive', { token: localStorage.getItem('token') });
+  }
 }
