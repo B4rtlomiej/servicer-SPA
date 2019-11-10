@@ -80,6 +80,7 @@ export class UserListComponent implements OnInit {
   changeIsActive(id: number, isActive: boolean) {
     const activeMessage = isActive ? 'Dezaktywowano' : 'Aktywowano';
     this.userService.changeIsActive(id).subscribe(() => {
+      this.loadUsers();
       this.toastr.success(activeMessage + ' użytkownika.');
     }, error => {
       this.toastr.error(error);
