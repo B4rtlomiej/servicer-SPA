@@ -33,14 +33,14 @@
               <button type="button" class="btn btn-warning w-110" (click)="resetPassword(user.id)">
                 Resetuj hasło
               </button>
-              <button type="button" class="btn btn-success w-110" 
-                      (click)="changeIsActive(user.id, user.isActive)" [disabled]="user.isActive">
+              <button *ngIf="!user.isActive" type="button" class="btn btn-success btn-change-active"
+                (click)="changeIsActive(user.id, user.isActive)">
                 Aktywuj
               </button>
-              <button type="button" class="btn btn-danger w-110" 
-                      (click)="changeIsActive(user.id, user.isActive)" [disabled]="!user.isActive">
-                  Dezaktywuj
-                </button>
+              <button *ngIf="user.isActive" type="button" class="btn btn-danger btn-change-active"
+                (click)="changeIsActive(user.id, user.isActive)">
+                Dezaktywuj
+              </button>
             </div>
           </td>
         </tr>

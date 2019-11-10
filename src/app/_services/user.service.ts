@@ -22,8 +22,9 @@ export class UserService {
 
   resetPassword(id: number) {
     return this.http.post(this.baseUrl + 'users/' + id + '/resetpassword', { token: localStorage.getItem('token') });
-  }  
-  changeIsActive(id: number, isActive: boolean) {
-    return this.http.post(this.baseUrl + 'users/' + id + '/changeisactive', {token: localStorage.getItem('token') });
+  }
+
+  changeIsActive(id: number) {
+    return this.http.post(this.baseUrl + 'users/' + id + '/changeisactive', { token: localStorage.getItem('token') });
   }
 }

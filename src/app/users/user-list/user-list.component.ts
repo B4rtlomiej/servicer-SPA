@@ -12,7 +12,7 @@ import { ToastrService } from 'src/app/_services/toastr.service';
 })
 export class UserListComponent implements OnInit {
   users: User[];
-  wasActive: string;
+
   constructor(private router: ActivatedRoute, private userService: UserService,
     private toastr: ToastrService, private adminMode: AdminModeService) { }
 
@@ -30,15 +30,13 @@ export class UserListComponent implements OnInit {
       this.toastr.error(error);
     });
   }
+
   changeIsActive(id: number, isActive: boolean) {
-    this.wasActive = isActive ? 'Dezaktywowano' : 'Aktywowano';
-    this.userService.changeIsActive(id, isActive).subscribe(
-      () => {
-        this.toastr.success(this.wasActive + ' użytkownika.');
-      },
-      error => {
-        this.toastr.error(error);
-      }
-    );
+    const activeMessage = isActive ? 'Dezaktywowano' : 'Aktywowano';
+    this.userService.changeIsActive(id).subscribe(() => {
+      this.toastr.success(activeMessage + ' użytkownika.');
+    }, error => {
+      this.toastr.error(error);
+    });
   }
 }
