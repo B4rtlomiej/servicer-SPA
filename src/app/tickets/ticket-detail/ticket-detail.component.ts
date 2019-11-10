@@ -59,7 +59,7 @@ export class TicketDetailComponent implements OnInit {
     this.ticket.description = this.editForm.get('description').value;
 
     this.ticketService.updateTicket(this.ticket).subscribe(() => {
-      this.ngOnInit();
+      this.cancel();
       this.toastr.success('Zapisano zmiany.');
     }, error => {
       this.toastr.error(error);
