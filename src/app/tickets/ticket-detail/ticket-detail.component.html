@@ -43,7 +43,7 @@
             </div>
             <div class="col-5">
               <h4>Ostatnio modyfikowano</h4>
-              <h3>TODO-{{ ticket.created | date: 'dd/MM/yyyy' }}</h3>
+              <h3>{{ ticket.created | date: 'dd/MM/yyyy' }}</h3>
             </div>
             <div class="col-1"></div>
             <div class="col-1"></div>
@@ -107,9 +107,9 @@
       </div>
       <hr class="container-line">
       <div class="notes-container__body">
-        <p>lorem ipsum</p>
-        <p>{{ editForm.value | json }}</p>
-        <p>{{ ticket | json }}</p>
+        <!-- <p>lorem ipsum</p>
+        <p>{{ editForm.value | json }}</p>-->
+        <!-- <p>{{ ticket | json }}</p> -->
       </div>
     </div>
   </div>

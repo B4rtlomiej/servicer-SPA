@@ -1,15 +1,15 @@
 <form class="form-inline" style="margin-left: 50%; margin-bottom: 1%;" #form="ngForm" (ngSubmit)="loadTicket()"
   novalidate>
 
-  <div class="form=group px-2">
-    <label for="priority">Priorytet</label>
+  <div class="px-2">
+    <label for="priority">Status</label>
     <select class="form-control ml-1" style="width: 130px" id="status" [(ngModel)]="ticketParams.status" name="status">
       <option *ngFor="let status of statuses" [value]="status.value">
         {{status.display}}
       </option>
     </select>
   </div>
-  <div class="form=group px-2">
+  <div class="px-2">
     <label for="priority">Priorytet</label>
     <select class="form-control ml-1" style="width: 130px" id="priority" [(ngModel)]="ticketParams.priority"
       name="priority">
