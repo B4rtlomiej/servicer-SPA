@@ -1,3 +1,79 @@
-<p>
-  {{ user | json }}
-</p>
+<div class="wrapper">
+    <div style="margin-top: 125px;"></div>
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-7 user-container">
+        <div class="user-container__header row">
+          <div class="user-container__field col-sm-3">
+            <h4>User</h4>
+            <h3>Z-{{ user.id }}</h3>
+          </div>
+          <div class="user-container__field col-md-3">
+          </div>
+        </div>
+        <hr class="container-line">
+        <div class="user-container__body">
+          <form [formGroup]="editForm" (ngSubmit)="editUser()">
+              <div class="row">
+                  <div class="col-1"></div>
+                  <div class="col-1"></div>
+                  <div class="col-5">
+                    <h4>Imie</h4>
+                      <div class="input-container">
+                        <input type="text" class="form-control" formControlName="firstName"
+                          [ngClass]="{'is-invalid': editForm.get('firstName').errors && editForm.get('firstName').touched}">
+                        <i class="fa fa-pencil" *ngIf="!isViewMode"></i>
+                      </div>
+                 </div>
+                  <div class="col-5">
+                      <h4>Nazwisko</h4>
+                      <div class="input-container">
+                          <input type="text" class="form-control" formControlName="lastName"
+                            [ngClass]="{'is-invalid': editForm.get('lastName').errors && editForm.get('lastName').touched}">
+                          <i class="fa fa-pencil" *ngIf="!isViewMode"></i>
+                        </div>
+                  </div>
+                  <div class="col-1"></div>
+                   <div class="col-1"></div>
+                  <div class="col-5">
+                    <h4>E-mail</h4>
+                      <div class="input-container">
+                        <input type="text" class="form-control" formControlName="email"
+                          [ngClass]="{'is-invalid': editForm.get('email').errors && editForm.get('email').touched}">
+                        <i class="fa fa-pencil" *ngIf="!isViewMode"></i>
+                      </div>
+                 </div>
+                  <div class="col-5">
+                      <h4>Telefon</h4>
+                      <div class="input-container">
+                          <input type="text" class="form-control" formControlName="phone"
+                            [ngClass]="{'is-invalid': editForm.get('phone').errors && editForm.get('phone').touched}">
+                          <i class="fa fa-pencil" *ngIf="!isViewMode"></i>
+                        </div>
+                  </div>
+                  <div class="col-1"></div>
+                  <div class="col-1"></div>
+             </div>
+          </form>         
+        </div>
+        <div class="button-div">
+          <button class="btn btn-primary edit-button" (click)="editUser()" *ngIf="isViewMode">Edytuj</button>
+          <button class="btn btn-info edit-button w-10" (click)="cancel()" *ngIf="!isViewMode">Odrzuć</button>
+          <button class="btn btn-primary edit-button w-10" (click)="update()" *ngIf="!isViewMode">Zapisz</button>
+  
+        </div>
+      </div>
+  
+      <div class="notes-container col-md-3">
+        <div class="notes-container__header">
+          <h1>Notatki</h1>
+        </div>
+        <hr class="container-line">
+        <div class="notes-container__body">
+          <p>lorem ipsum</p>
+          <p>{{ editForm.value | json }}</p>
+           <p>{{ user | json }}
+        </div>
+      </div>
+    </div>
+  </div>

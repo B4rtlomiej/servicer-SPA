@@ -58,4 +58,8 @@ export class UserService {
   changeIsActive(id: number) {
     return this.http.post(this.baseUrl + 'users/' + id + '/changeisactive', { token: localStorage.getItem('token') });
   }
+
+  updateUser(user: User) {
+    return this.http.put(this.baseUrl + 'users/' + user.id, user);
+  }
 }
