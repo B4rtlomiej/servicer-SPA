@@ -21,7 +21,7 @@ export class UserListResolver implements Resolve<User[]> {
     return this.userService.getUsers(this.pageNumber, this.pageSize).pipe(
       catchError(error => {
         this.toastr.error(error);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/']);
         return of(null);
       })
     );

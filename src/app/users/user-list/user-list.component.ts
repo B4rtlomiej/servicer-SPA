@@ -27,8 +27,7 @@ export class UserListComponent implements OnInit {
   pagination: Pagination;
 
   constructor(private router: ActivatedRoute, private userService: UserService, private toastr: ToastrService,
-    private adminMode: AdminModeService
-  ) { }
+    private adminMode: AdminModeService) { }
 
   ngOnInit() {
     this.adminMode.isAdminMode = true;

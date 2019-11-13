@@ -1,0 +1,87 @@
+<div class="wrapper">
+  <div class="container">
+    <div style="height: 60px;"></div>
+    <table class="table table-borderless table-dark product-specifications-table">
+      <button type="button" class="btn btn-success btn-add" (click)="openModal(editTemplate, null)">
+        <i class="fa fa-plus-circle mr-1"></i>
+        Dodaj
+      </button>
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Nazwa</th>
+          <th scope="col">Seria</th>
+          <th scope="col">Producent</th>
+          <th scope="col">Aktywny</th>
+          <th scope="col">Akcje</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="data-row" *ngFor="let productSpecification of productSpecifications">
+          <th scope="row">{{ productSpecification.id }}</th>
+          <td>{{ productSpecification.name }}</td>
+          <td>{{ productSpecification.series }}</td>
+          <td>{{ productSpecification.manufacturer }}</td>
+          <td>
+            <input *ngIf="productSpecification.isActive" type="checkbox" checked disabled>
+            <input *ngIf="!productSpecification.isActive" type="checkbox" disabled>
+          </td>
+          <td>
+            <div class="btn-group">
+              <button type="button" class="btn btn-info w-110" (click)="openModal(editTemplate, productSpecification)">
+                <i class="fa fa-edit mr-1"></i>Edytuj</button>
+              <button *ngIf="productSpecification.isActive" type="button" class="btn btn-warning btn-change-active"
+                (click)="openModal(archiveTemplate, productSpecification)">
+                Dezaktywuj
+              </button>
+              <button *ngIf="!productSpecification.isActive" type="button" class="btn btn-success btn-change-active"
+                (click)="openModal(archiveTemplate, productSpecification)">
+                Aktywuj
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <ng-template #editTemplate>
+      <div class="modal-body text-center">
+        <form [formGroup]="upsertForm" (ngSubmit)="upsert()">
+          <div class="form-group">
+            <label for="manufacturer">Producent</label>
+            <input type="text" class="form-control" formControlName="manufacturer" id="manufacturer"
+              [ngClass]="{'is-invalid': upsertForm.get('manufacturer').errors && upsertForm.get('manufacturer').touched}">
+            <div class="invalid-feedback">Wartość wymagana.</div>
+          </div>
+          <div class="form-group">
+            <label for="series">Seria</label>
+            <input type="text" class="form-control" formControlName="series" id="series"
+              [ngClass]="{'is-invalid': upsertForm.get('series').errors && upsertForm.get('series').touched}">
+            <div class="invalid-feedback">Wartość wymagana.</div>
+          </div>
+          <div class="form-group">
+            <label for="name">Nazwa</label>
+            <input type="text" class="form-control" formControlName="name" id="name"
+              [ngClass]="{'is-invalid': upsertForm.get('name').errors && upsertForm.get('name').touched}">
+            <div class="invalid-feedback">Wartość wymagana.</div>
+          </div>
+          <button type="submit" [disabled]="!upsertForm.valid" class="btn btn-danger">Zapisz</button>
+          <button type="button" class="btn btn-defualt" (click)="decline()">Zamknij</button>
+        </form>
+      </div>
+    </ng-template>
+    <ng-template #archiveTemplate>
+      <div class="modal-body text-center">
+        <p *ngIf="productSpecification.isActive">Czy na pewno chcesz dezaktywować
+          {{ productSpecification.manufacturer }} {{ productSpecification.series }}
+          {{ productSpecification.name }}?
+        </p>
+        <p *ngIf="!productSpecification.isActive">Czy na pewno chcesz aktywować {{ productSpecification.manufacturer }}
+          {{ productSpecification.series }}
+          {{ productSpecification.name }}?
+        </p>
+        <button type="button" class="btn btn-danger"
+          (click)="changeIsActive(productSpecification.id, productSpecification.isActive)">Tak</button>
+        <button type="button" class="btn btn-defualt" (click)="decline()">Nie</button>
+      </div>
+    </ng-template>
+  </div>
