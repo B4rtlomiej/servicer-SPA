@@ -46,6 +46,7 @@ a:hover {
 
 .ticket-container__field > h4,
 .ticket-container__body h4 {
+    font-size: 1.3rem;
     color: #818181;
 }
 
@@ -60,7 +61,8 @@ a:hover {
 }
 
 input:disabled,
-.select-form:disabled {
+.select-form:disabled,
+textarea:disabled {
     border-bottom: 1px solid gray;
     background-color: transparent;
     width: 89%;
@@ -68,11 +70,12 @@ input:disabled,
 }
 
 input,
-.select-form {
+.select-form,
+textarea {
     border: 0;
     border-bottom: 1px solid #3bceff;
     background-color: transparent;
-    font-size: 1.640625rem;
+    font-size: 1.2rem;
     font-weight: 300;
     line-height: 1.2;
     padding: 0;
@@ -86,7 +89,8 @@ input,
 }
 
 input:focus,
-.select-form:focus {
+.select-form:focus,
+textarea:focus {
     box-shadow: none;
     background-color: transparent;
 }
@@ -97,6 +101,7 @@ input:focus,
     width: 89%;
     padding-bottom: 5px;
     border-bottom: 1px solid gray;
+    font-size: 1.2rem;
 }
 
 .container-line {

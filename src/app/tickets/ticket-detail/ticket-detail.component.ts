@@ -31,7 +31,8 @@ export class TicketDetailComponent implements OnInit {
       subject: [{ value: this.ticket.subject, disabled: true }, [Validators.required, Validators.maxLength(50)]],
       status: [{ value: this.ticket.status, disabled: true }],
       priority: [{ value: this.ticket.priority, disabled: true }],
-      description: [{ value: this.ticket.description, disabled: true }]
+      type: [{ value: this.ticket.type, disabled: true }],
+      description: [{ value: this.ticket.description, disabled: true }, [Validators.required, Validators.minLength(20)]]
     });
   }
 
@@ -40,6 +41,7 @@ export class TicketDetailComponent implements OnInit {
     this.editForm.get('subject').enable();
     this.editForm.get('status').enable();
     this.editForm.get('priority').enable();
+    this.editForm.get('type').enable();
     this.editForm.get('description').enable();
   }
 
@@ -48,6 +50,7 @@ export class TicketDetailComponent implements OnInit {
     this.editForm.get('subject').disable();
     this.editForm.get('status').disable();
     this.editForm.get('priority').disable();
+    this.editForm.get('type').disable();
     this.editForm.get('description').disable();
     this.ngOnInit();
   }
@@ -56,6 +59,7 @@ export class TicketDetailComponent implements OnInit {
     this.ticket.subject = this.editForm.get('subject').value;
     this.ticket.status = this.editForm.get('status').value;
     this.ticket.priority = this.editForm.get('priority').value;
+    this.ticket.type = this.editForm.get('type').value;
     this.ticket.description = this.editForm.get('description').value;
 
     this.ticketService.updateTicket(this.ticket).subscribe(() => {
