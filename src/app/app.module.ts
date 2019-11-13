@@ -26,6 +26,10 @@ import { UserActivateComponent } from './users/user-activate/user-activate.compo
 import { TicketListResolver } from './_resolvers/ticket-list.resolver';
 import { TicketDetailComponent } from './tickets/ticket-detail/ticket-detail.component';
 import { TicketDetailResolver } from './_resolvers/ticket-detail.resolver';
+import { ProductSpecificationListComponent }
+   from './product-specifications/product-specification-list/product-specification-list.component';
+import { ProductSpecificationListResolver } from './_resolvers/product-specification-list.resolver';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 export function tokenRetriver() {
    return localStorage.getItem('token');
@@ -45,7 +49,8 @@ export function tokenRetriver() {
       UserListComponent,
       UserDetailComponent,
       UserRegisterComponent,
-      UserActivateComponent
+      UserActivateComponent,
+      ProductSpecificationListComponent
    ],
    imports: [
       BrowserModule,
@@ -62,7 +67,8 @@ export function tokenRetriver() {
             whitelistedDomains: ['localhost:5000'],
             blacklistedRoutes: ['localhost:5000/api/auth']
          }
-      })
+      }),
+      ModalModule.forRoot()
    ],
    providers: [
       AuthService,
@@ -70,7 +76,8 @@ export function tokenRetriver() {
       UserDetailResolver,
       UserListResolver,
       TicketDetailResolver,
-      TicketListResolver
+      TicketListResolver,
+      ProductSpecificationListResolver
    ],
    bootstrap: [
       AppComponent
