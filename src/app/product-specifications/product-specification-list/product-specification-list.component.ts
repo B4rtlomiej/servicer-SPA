@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { ProductSpecificationService } from 'src/app/_services/product-specification.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { Pagination, PaginatedResult } from 'src/app/_models/pagination';
 
 @Component({
   selector: 'app-product-specification-list',
@@ -12,18 +13,42 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
   styleUrls: ['./product-specification-list.component.css']
 })
 export class ProductSpecificationListComponent implements OnInit {
-  productSpecifications: ProductSpecification[];
+  productSpecifications: ProductSpecification [];
+  
   productSpecification: ProductSpecification;
   modalRef: BsModalRef;
   public upsertForm: FormGroup;
+
+  productParams: any = {};
+  pagination: Pagination;
 
   constructor(private router: ActivatedRoute, private productSpecificationService: ProductSpecificationService,
     private formBuilder: FormBuilder, private toastr: ToastrService, private modalService: BsModalService) { }
 
   ngOnInit() {
     this.router.data.subscribe(data => {
-      this.productSpecifications = data.productSpecifications;
+      this.productSpecifications = data.productSpecifications.result;
+      this.pagination = data.productSpecifications.pagination; 
     });
+  }
+
+  pageChanged(event: any): void {
+    this.pagination.currentPage = event.page;
+    this.loadProducts();
+  }
+
+  loadProducts() {
+    this.productSpecificationService
+      .getProductSpecifications(this.pagination.currentPage, this.pagination.itemsPerPage, this.productParams)
+      .subscribe(
+        (res: PaginatedResult<ProductSpecification[]>) => {
+          this.productSpecifications = res.result;
+          this.pagination = res.pagination;
+        },
+        error => {
+          this.toastr.error(error);
+        }
+      );
   }
 
   openModal(template: TemplateRef<any>, productSpecification: ProductSpecification) {

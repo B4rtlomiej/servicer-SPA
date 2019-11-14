@@ -11,11 +11,7 @@ export class UserListResolver implements Resolve<User[]> {
   pageNumber = 1;
   pageSize = 5;
 
-  constructor(
-    private userService: UserService,
-    private router: Router,
-    private toastr: ToastrService
-  ) { }
+  constructor( private userService: UserService, private router: Router, private toastr: ToastrService) { }
 
   resolve(route: ActivatedRouteSnapshot): Observable<User[]> {
     return this.userService.getUsers(this.pageNumber, this.pageSize).pipe(

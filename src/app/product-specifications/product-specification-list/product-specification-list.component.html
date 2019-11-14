@@ -1,6 +1,17 @@
 <div class="wrapper">
   <div class="container">
-    <div style="height: 60px;"></div>
+
+    <form class="form-inline " #form="ngForm" (ngSubmit)="loadProducts()" style="margin-right: 145px; margin-bottom: 1%;" novalidate>
+      
+      <div class="col">
+        <div class="btn-group float-right">
+          <button type="button" name="isActive" class="btn btn-primary" btnRadio="active"
+            [(ngModel)]="productParams.isActive" (click)="loadProducts()">Active</button>
+          <button type="button" name="isActive" class="btn btn-primary" btnRadio="inactive"
+            [(ngModel)]="productParams.isActive" (click)="loadProducts()">inactive</button>
+        </div>
+      </div>
+    </form>
     <table class="table table-borderless table-dark product-specifications-table">
       <button type="button" class="btn btn-success btn-add" (click)="openModal(editTemplate, null)">
         <i class="fa fa-plus-circle mr-1"></i>
@@ -84,4 +95,10 @@
         <button type="button" class="btn btn-defualt" (click)="decline()">Nie</button>
       </div>
     </ng-template>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [(ngModel)]="pagination.currentPage"
+      [itemsPerPage]="pagination.itemsPerPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;"
+      nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
   </div>

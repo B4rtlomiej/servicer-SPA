@@ -8,11 +8,13 @@ import { ProductSpecificationService } from '../_services/product-specification.
 
 @Injectable()
 export class ProductSpecificationListResolver implements Resolve<ProductSpecification[]> {
+  pageNumber = 1;
+  pageSize = 5;
 
   constructor(private productSpecificationService: ProductSpecificationService, private router: Router, private toastr: ToastrService) { }
 
   resolve(route: ActivatedRouteSnapshot): Observable<ProductSpecification[]> {
-    return this.productSpecificationService.getProductSpecifications().pipe(
+    return this.productSpecificationService.getProductSpecifications(this.pageNumber, this.pageSize).pipe(
       catchError(error => {
         this.toastr.error(error);
         this.router.navigate(['/']);
