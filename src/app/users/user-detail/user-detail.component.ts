@@ -30,7 +30,8 @@ export class UserDetailComponent implements OnInit {
       firstName: [{ value: this.user.person.firstName, disabled: true }, [Validators.required, Validators.maxLength(50)]],
       lastName: [{ value: this.user.person.lastName, disabled: true }],
       email: [{ value: this.user.person.email, disabled: true }],
-      phone: [{ value: this.user.person.phone, disabled: true }]
+      phone: [{ value: this.user.person.phone, disabled: true }],
+      userRole: [{ value: this.user.userRole, disabled: true }]
     });
   }
 
@@ -40,6 +41,7 @@ export class UserDetailComponent implements OnInit {
     this.editForm.get('lastName').enable();
     this.editForm.get('email').enable();
     this.editForm.get('phone').enable();
+    this.editForm.get('userRole').enable();
   }
 
   cancel() {
@@ -48,6 +50,7 @@ export class UserDetailComponent implements OnInit {
     this.editForm.get('lastName').disable();
     this.editForm.get('email').disable();
     this.editForm.get('phone').disable();
+    this.editForm.get('userRole').disable();
     this.ngOnInit();
   }
 
@@ -56,6 +59,7 @@ export class UserDetailComponent implements OnInit {
     this.user.person.lastName = this.editForm.get('lastName').value;
     this.user.person.email = this.editForm.get('email').value;
     this.user.person.phone = this.editForm.get('phone').value;
+    this.user.userRole = this.editForm.get('userRole').value;
 
     this.userService.updateUser(this.user).subscribe(() => {
       this.cancel();

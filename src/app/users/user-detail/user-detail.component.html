@@ -6,7 +6,7 @@
         <div class="user-container__header row">
           <div class="user-container__field col-sm-3">
             <h4>User</h4>
-            <h3>Z-{{ user.id }}</h3>
+            <h3>U-{{ user.id }}</h3>
           </div>
           <div class="user-container__field col-md-3">
           </div>
@@ -53,6 +53,16 @@
                   </div>
                   <div class="col-1"></div>
                   <div class="col-1"></div>
+                  <div class="col-5">
+                      <h4>Rola</h4>
+                  <select class="form-control select-form" formControlName="userRole">
+                    <option value="Agent">Agent</option>
+                    <option value="Manager">Manager</option>
+                    <option value="Admin">Admin</option>
+                  </select>
+                </div>
+                <div class="col-1"></div>
+                  <div class="col-1"></div>
              </div>
           </form>         
         </div>
@@ -70,7 +80,6 @@
         </div>
         <hr class="container-line">
         <div class="notes-container__body">
-          <p>lorem ipsum</p>
           <p>{{ editForm.value | json }}</p>
            <p>{{ user | json }}
         </div>
