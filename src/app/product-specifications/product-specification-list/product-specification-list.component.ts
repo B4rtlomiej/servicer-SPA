@@ -22,10 +22,15 @@ export class ProductSpecificationListComponent implements OnInit {
   productParams: any = {};
   pagination: Pagination;
 
-  names = [
-    { value: 'Name', display: 'Name' },
-    { value: 'Manufacturer', display: 'Manufacturer' },
-    { value: 'Series', display: 'Series' }
+  columnList = [
+    { value: 'name', display: 'Nazwie' },
+    { value: 'series', display: 'Serii' },
+    { value: 'manufacturer', display: 'Producencie' },
+  ];
+
+  directionSortingList = [
+    { value: 'ascending', display: 'Rosnąco' },
+    { value: 'descending', display: 'Malejąco' },
   ];
 
   constructor(private router: ActivatedRoute, private productSpecificationService: ProductSpecificationService,
@@ -36,7 +41,9 @@ export class ProductSpecificationListComponent implements OnInit {
       this.productSpecifications = data.productSpecifications.result;
       this.pagination = data.productSpecifications.pagination; 
     });
-    this.productParams.name = 'Name';
+    this.productParams.column = 'name';
+    this.productParams.sorting = 'ascending';
+    this.productParams.isActive = 'active';
   }
 
   pageChanged(event: any): void {
@@ -45,7 +52,9 @@ export class ProductSpecificationListComponent implements OnInit {
   }
 
   resetFilters() {
-    this.productParams.name = 'Name';
+    this.productParams.column = 'name';
+    this.productParams.sorting = 'ascending';
+    this.productParams.isActive = 'active';
     this.loadProducts();
   }
 
@@ -86,7 +95,7 @@ export class ProductSpecificationListComponent implements OnInit {
     this.productSpecification = Object.assign({}, this.upsertForm.value);
     this.productSpecification.id = id;
     this.productSpecificationService.upsertProductSpecification(this.productSpecification).subscribe(() => {
-      // TODO: Reload product specifications
+      this.loadProducts();
       this.modalRef.hide();
       this.productSpecification = null;
       this.toastr.success('Zapisano zmiany.');
@@ -98,7 +107,7 @@ export class ProductSpecificationListComponent implements OnInit {
   changeIsActive(productSpecificationId: number, wasActive: boolean): void {
     this.modalRef.hide();
     this.productSpecificationService.changeIsActive(productSpecificationId).subscribe(() => {
-      // TODO: Reload product specifications
+      this.loadProducts();
       const activeMessage = wasActive ? 'Dezaktywowano' : 'Aktywowano';
       this.toastr.success(activeMessage + ' produkt.');
     }, error => {

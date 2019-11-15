@@ -3,12 +3,22 @@
 
     <form class="form-inline " #form="ngForm" (ngSubmit)="loadProducts()" style="margin-right: 145px; margin-bottom: 1%;" novalidate>
 
+            <div class="px-2" style="margin-left: 15%">
+              <label for="sortBy">Sortuj po</label>
+              <select class="form-control ml-1" style="width: 130px" id="sortBy" [(ngModel)]="productParams.column"
+                name="sortBy">
+                <option *ngFor="let column of columnList" [value]="column.value">
+                  {{column.display}}
+                </option>
+              </select>
+            </div>
+
             <div class="px-2">
-              <label for="userRole">Rola</label>
-              <select class="form-control ml-1" style="width: 130px" id="names" [(ngModel)]="productParams.name"
-                name="userRole">
-                <option *ngFor="let name of names" [value]="name.value">
-                  {{name.display}}
+              <label for="sort">Sortuj</label>
+              <select class="form-control ml-1" style="width: 130px" id="sort" [(ngModel)]="productParams.sorting"
+                name="sort">
+                <option *ngFor="let direction of directionSortingList" [value]="direction.value">
+                  {{direction.display}}
                 </option>
               </select>
             </div>
@@ -22,9 +32,9 @@
       <div class="col">
         <div class="btn-group float-right">
           <button type="button" name="isActive" class="btn btn-primary" btnRadio="active"
-            [(ngModel)]="productParams.isActive" (click)="loadProducts()">Active</button>
+            [(ngModel)]="productParams.isActive" (click)="loadProducts()">Aktywne</button>
           <button type="button" name="isActive" class="btn btn-primary" btnRadio="inactive"
-            [(ngModel)]="productParams.isActive" (click)="loadProducts()">inactive</button>
+            [(ngModel)]="productParams.isActive" (click)="loadProducts()">Nieaktywne</button>
         </div>
       </div>
     </form>
