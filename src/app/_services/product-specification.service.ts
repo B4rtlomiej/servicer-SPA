@@ -25,6 +25,9 @@ export class ProductSpecificationService {
     if (productParams != null && productParams.isActive !=null && productParams.isActive !==undefined) {
       params = params.append('isActive', productParams.isActive);
     }
+    if (productParams != null && productParams.name !=null && productParams.name !==undefined) {
+      params = params.append('name', productParams.name);
+    }
     return this.http
       .get<ProductSpecification[]>(this.baseUrl + 'productspecifications', { observe: 'response', params })
       .pipe(

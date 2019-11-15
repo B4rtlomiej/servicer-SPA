@@ -22,6 +22,12 @@ export class ProductSpecificationListComponent implements OnInit {
   productParams: any = {};
   pagination: Pagination;
 
+  names = [
+    { value: 'Name', display: 'Name' },
+    { value: 'Manufacturer', display: 'Manufacturer' },
+    { value: 'Series', display: 'Series' }
+  ];
+
   constructor(private router: ActivatedRoute, private productSpecificationService: ProductSpecificationService,
     private formBuilder: FormBuilder, private toastr: ToastrService, private modalService: BsModalService) { }
 
@@ -30,10 +36,16 @@ export class ProductSpecificationListComponent implements OnInit {
       this.productSpecifications = data.productSpecifications.result;
       this.pagination = data.productSpecifications.pagination; 
     });
+    this.productParams.name = 'Name';
   }
 
   pageChanged(event: any): void {
     this.pagination.currentPage = event.page;
+    this.loadProducts();
+  }
+
+  resetFilters() {
+    this.productParams.name = 'Name';
     this.loadProducts();
   }
 

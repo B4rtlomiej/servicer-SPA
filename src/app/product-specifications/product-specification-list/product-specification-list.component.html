@@ -2,7 +2,23 @@
   <div class="container">
 
     <form class="form-inline " #form="ngForm" (ngSubmit)="loadProducts()" style="margin-right: 145px; margin-bottom: 1%;" novalidate>
+
+            <div class="px-2">
+              <label for="userRole">Rola</label>
+              <select class="form-control ml-1" style="width: 130px" id="names" [(ngModel)]="productParams.name"
+                name="userRole">
+                <option *ngFor="let name of names" [value]="name.value">
+                  {{name.display}}
+                </option>
+              </select>
+            </div>
       
+            <div class="btn-group float-right" style="margin-top: 2%;">
+              <button type='submit' class="btn btn-primary" style="margin-left:10px">Zastosuj filtry</button>
+              <button type='button' class="btn btn-info" (click)="resetFilters()" style="margin-left:10px">
+                Resetuj filtry
+              </button>
+            </div>
       <div class="col">
         <div class="btn-group float-right">
           <button type="button" name="isActive" class="btn btn-primary" btnRadio="active"
