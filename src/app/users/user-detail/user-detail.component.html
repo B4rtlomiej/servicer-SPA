@@ -18,7 +18,7 @@
                   <div class="col-1"></div>
                   <div class="col-1"></div>
                   <div class="col-5">
-                    <h4>Imie</h4>
+                    <h4>Imię</h4>
                       <div class="input-container">
                         <input type="text" class="form-control" formControlName="firstName"
                           [ngClass]="{'is-invalid': editForm.get('firstName').errors && editForm.get('firstName').touched}">
@@ -34,8 +34,8 @@
                         </div>
                   </div>
                   <div class="col-1"></div>
-                   <div class="col-1"></div>
-                  <div class="col-5">
+                  <div class="col-1"></div>
+                  <div class="col-5" style="margin-top: 2%;">
                     <h4>E-mail</h4>
                       <div class="input-container">
                         <input type="text" class="form-control" formControlName="email"
@@ -43,7 +43,7 @@
                         <i class="fa fa-pencil" *ngIf="!isViewMode"></i>
                       </div>
                  </div>
-                  <div class="col-5">
+                  <div class="col-5" style="margin-top: 2%;">
                       <h4>Telefon</h4>
                       <div class="input-container">
                           <input type="text" class="form-control" formControlName="phone"
@@ -53,7 +53,7 @@
                   </div>
                   <div class="col-1"></div>
                   <div class="col-1"></div>
-                  <div class="col-5">
+                  <div class="col-5" style="margin-top: 2%;">
                       <h4>Rola</h4>
                   <select class="form-control select-form" formControlName="userRole">
                     <option value="Agent">Agent</option>
@@ -79,10 +79,10 @@
           <h1>Notatki</h1>
         </div>
         <hr class="container-line">
-        <div class="notes-container__body">
+        <!-- <div class="notes-container__body">
           <p>{{ editForm.value | json }}</p>
            <p>{{ user | json }}
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
