@@ -36,6 +36,7 @@ export class AllTicketsComponent implements OnInit {
     });
     this.ticketParams.status = 0;
     this.ticketParams.priority = 0;
+    this.ticketParams.orderBy = 'lastOpen';
   }
   pageChanged(event: any): void {
     this.pagination.currentPage = event.page;
@@ -43,7 +44,8 @@ export class AllTicketsComponent implements OnInit {
   }
   resetFilters() {
     this.ticketParams.status = 0;
-    this.ticketParams.priority=0;
+    this.ticketParams.priorit = 0;
+    this.ticketParams.orderBy = 'lastOpen';
     this.loadTicket();
   }
   loadTicket() {

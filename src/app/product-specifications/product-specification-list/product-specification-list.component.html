@@ -1,6 +1,43 @@
 <div class="wrapper">
   <div class="container">
-    <div style="height: 60px;"></div>
+
+    <form class="form-inline " #form="ngForm" (ngSubmit)="loadProducts()" style="margin-right: 145px; margin-bottom: 1%;" novalidate>
+
+            <div class="px-2" style="margin-left: 15%">
+              <label for="sortBy">Sortuj po</label>
+              <select class="form-control ml-1" style="width: 130px" id="sortBy" [(ngModel)]="productParams.column"
+                name="sortBy">
+                <option *ngFor="let column of columnList" [value]="column.value">
+                  {{column.display}}
+                </option>
+              </select>
+            </div>
+
+            <div class="px-2">
+              <label for="sort">Sortuj</label>
+              <select class="form-control ml-1" style="width: 130px" id="sort" [(ngModel)]="productParams.sorting"
+                name="sort">
+                <option *ngFor="let direction of directionSortingList" [value]="direction.value">
+                  {{direction.display}}
+                </option>
+              </select>
+            </div>
+      
+            <div class="btn-group float-right" style="margin-top: 2%;">
+              <button type='submit' class="btn btn-primary" style="margin-left:10px">Zastosuj filtry</button>
+              <button type='button' class="btn btn-info" (click)="resetFilters()" style="margin-left:10px">
+                Resetuj filtry
+              </button>
+            </div>
+      <div class="col">
+        <div class="btn-group float-right">
+          <button type="button" name="isActive" class="btn btn-primary" btnRadio="active"
+            [(ngModel)]="productParams.isActive" (click)="loadProducts()">Aktywne</button>
+          <button type="button" name="isActive" class="btn btn-primary" btnRadio="inactive"
+            [(ngModel)]="productParams.isActive" (click)="loadProducts()">Nieaktywne</button>
+        </div>
+      </div>
+    </form>
     <table class="table table-borderless table-dark product-specifications-table">
       <button type="button" class="btn btn-success btn-add" (click)="openModal(editTemplate, null)">
         <i class="fa fa-plus-circle mr-1"></i>
@@ -84,4 +121,10 @@
         <button type="button" class="btn btn-defualt" (click)="decline()">Nie</button>
       </div>
     </ng-template>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [(ngModel)]="pagination.currentPage"
+      [itemsPerPage]="pagination.itemsPerPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;"
+      nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
   </div>
