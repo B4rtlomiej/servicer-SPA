@@ -1,0 +1,118 @@
+
+.wrapper {
+    margin: 0;
+    font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #839496;
+    text-align: left;
+    background-color: #002B36;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    margin-top: 5%;
+}
+
+.data-row:hover {
+    background-color: #05232b;
+}
+
+.user-container {
+    margin-right: 1.3rem;
+    padding: 1rem;
+    border: 1px solid gray;
+}
+
+a {
+    color: #800080;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.user-container__field > h4,
+.user-container__body h4 {
+    color: #e9dbdb;
+}
+
+.input-container {
+    display: flex;
+}
+
+.input-container i {
+    padding-top: 25px;
+    border-bottom: 1px solid #CB4B16;
+    color: #CB4B16;
+}
+
+input:disabled,
+.select-form:disabled {
+    border-bottom: 1px solid gray;
+    background-color: transparent;
+    width: 89%;
+    -webkit-appearance: none;
+}
+
+input,
+.select-form {
+    border: 0;
+    border-bottom: 1px solid #CB4B16;
+    background-color: transparent;
+    font-size: 1.640625rem;
+    font-weight: 300;
+    line-height: 1.2;
+    padding: 0;
+    color: grey;
+    width: 85.5%;
+}
+
+.select-form {
+    width: 89%;
+    margin-bottom: 31.12px;
+}
+
+input:focus,
+.select-form:focus {
+    box-shadow: none;
+    background-color: transparent;
+    color: white
+}
+
+.user-container__body h3 {
+    margin-top: 23.5px;
+    margin-bottom: 2rem;
+    width: 89%;
+    padding-bottom: 5px;
+    border-bottom: 1px solid gray;
+}
+
+.container-line {
+    border-top: 1px solid gray;
+    margin: 1.5rem 0 2rem 0;
+}
+
+.notes-container {
+    padding: 1rem;
+    border: 1px solid gray;
+}
+
+.button-div {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.edit-button {
+    margin: 5px;
+}
+
+select option {
+    background-color: #002B36;
+    color: white;
+}
