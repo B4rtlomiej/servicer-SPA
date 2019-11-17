@@ -82,7 +82,8 @@ input:focus,
 .select-form:focus {
     box-shadow: none;
     background-color: transparent;
-    color: white
+    color: white;
+    border-bottom: 1px solid #CB4B16;
 }
 
 .user-container__body h3 {
