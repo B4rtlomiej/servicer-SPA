@@ -5,6 +5,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'src/app/_services/toastr.service';
 import { TicketService } from 'src/app/_services/ticket.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Note } from 'src/app/_models/note';
+import { NoteService } from 'src/app/_services/note.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-ticket-detail',
@@ -15,15 +18,30 @@ export class TicketDetailComponent implements OnInit {
   public ticket: Ticket;
   public editForm: FormGroup;
   public isViewMode = true;
+  public addTicketNoteRowMode = false;
+  public addCustomerNoteRowMode = false;
+  public addItemNoteRowMode = false;
+  public addProductSpecificationNoteRowMode = false;
+  newNote: string;
+  note: Note;
 
   constructor(private ticketService: TicketService, private router: Router, private formBuilder: FormBuilder,
-    private toastr: ToastrService, private route: ActivatedRoute) { }
+    private toastr: ToastrService, private route: ActivatedRoute, private noteService: NoteService,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
       this.ticket = data.ticket;
     });
     this.createEditForm();
+  }
+
+  loadTicket() {
+    this.ticketService.getTicket(this.ticket.id).subscribe((response) => {
+      this.ticket = response;
+    }, error => {
+      this.toastr.error(error);
+    });;
   }
 
   createEditForm() {
@@ -66,6 +84,63 @@ export class TicketDetailComponent implements OnInit {
       this.cancel();
       this.toastr.success('Zapisano zmiany.');
     }, error => {
+      this.toastr.error(error);
+    });
+  }
+
+  addNoteRow(mode: string) {
+    this.cancelNote();
+
+    if (mode === 'ticket') {
+      this.addTicketNoteRowMode = true;
+    } else if (mode === 'customer') {
+      this.addCustomerNoteRowMode = true;
+    } else if (mode === 'item') {
+      this.addItemNoteRowMode = true;
+    } else {
+      this.addProductSpecificationNoteRowMode = true;
+    }
+  }
+
+  cancelNote() {
+    this.addTicketNoteRowMode = false;
+    this.addCustomerNoteRowMode = false;
+    this.addItemNoteRowMode = false;
+    this.addProductSpecificationNoteRowMode = false;
+    this.newNote = null;
+  }
+
+  addNote(mode: string) {
+    this.note = {
+      text: this.newNote
+    };
+    this.cancelNote();
+    if (mode === 'ticket') {
+      this.note.ticketId = this.ticket.id;
+    } else if (mode === 'customer') {
+      this.note.customerId = this.ticket.item.customer.id;
+    } else if (mode === 'item') {
+      this.note.itemId = this.ticket.item.id;
+    } else {
+      this.note.productSpecificationId = this.ticket.item.productSpecification.id;
+    }
+
+    this.noteService.createNote(this.note).subscribe(() => {
+      this.loadTicket();
+      this.toastr.success('Stworzono notatkę.');
+    }, error => {
+      this.toastr.error(error);
+    });
+  }
+
+  deleteNote(noteId: number) {
+    this.spinner.show();
+    this.noteService.deleteNote(noteId).subscribe(() => {
+      this.loadTicket();
+      this.spinner.hide();
+      this.toastr.success('Usunięto notatkę.');
+    }, error => {
+      this.spinner.hide();
       this.toastr.error(error);
     });
   }

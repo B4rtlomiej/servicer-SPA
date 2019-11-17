@@ -93,6 +93,7 @@ input:focus,
 textarea:focus {
     box-shadow: none;
     background-color: transparent;
+    outline: none;
 }
 
 .ticket-container__body h3 {
@@ -112,7 +113,17 @@ textarea:focus {
 .notes-container {
     padding: 1rem;
     border: 1px solid gray;
-    border: 1px solid rgba(0, 0, 0, 0.2)
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.notes-container__body {
+    max-height: 620px;
+    overflow-y: auto;
+}
+
+.note-container {
+    padding-bottom: 4px;
+    border-bottom: 1px solid gray;
 }
 
 .button-div {
@@ -122,4 +133,20 @@ textarea:focus {
 
 .edit-button {
     margin: 5px;
+}
+
+.add-button-container {
+    text-align: center;
+}
+
+.note-area {
+    width: 100%;
+    font-size: 15px;
+}
+
+.note-icon {
+    color: #990000;
+    font-size: 20px;
+    margin-top: 12px;
+    cursor: pointer;
 }

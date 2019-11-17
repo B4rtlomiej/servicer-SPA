@@ -5,6 +5,7 @@ import { AdminModeService } from 'src/app/_services/admin-mode.service';
 import { UserService } from 'src/app/_services/user.service';
 import { ToastrService } from 'src/app/_services/toastr.service';
 import { Pagination, PaginatedResult } from 'src/app/_models/pagination';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-user-list',
@@ -27,13 +28,15 @@ export class UserListComponent implements OnInit {
   pagination: Pagination;
 
   constructor(private router: ActivatedRoute, private userService: UserService, private toastr: ToastrService,
-    private adminMode: AdminModeService) { }
+    private adminMode: AdminModeService, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
+    this.spinner.show();
     this.adminMode.isAdminMode = true;
     this.router.data.subscribe(data => {
       this.users = data.users.result;
       this.pagination = data.users.pagination;
+      this.spinner.hide();
     });
     this.userParams.userRole = 'Admin';
     this.userParams.isActive = true;

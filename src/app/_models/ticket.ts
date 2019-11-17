@@ -1,4 +1,5 @@
 import { Item } from './item';
+import { Note } from './note';
 
 export interface Ticket {
     id: number;
@@ -11,4 +12,9 @@ export interface Ticket {
     subject: string;
     description?: string;
     item: Item;
+    ticketNotes: Note[];
+    customerNotes: Note[];
+    itemNotes: Note[];
+    productSpecificationNotes: Note[];
+
 }
