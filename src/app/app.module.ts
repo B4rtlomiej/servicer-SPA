@@ -30,6 +30,7 @@ import { ProductSpecificationListComponent }
    from './product-specifications/product-specification-list/product-specification-list.component';
 import { ProductSpecificationListResolver } from './_resolvers/product-specification-list.resolver';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { NgxSpinnerModule } from 'ngx-spinner'
 
 export function tokenRetriver() {
    return localStorage.getItem('token');
@@ -68,7 +69,8 @@ export function tokenRetriver() {
             blacklistedRoutes: ['localhost:5000/api/auth']
          }
       }),
-      ModalModule.forRoot()
+      ModalModule.forRoot(),
+      NgxSpinnerModule
    ],
    providers: [
       AuthService,
