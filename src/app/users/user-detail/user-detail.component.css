@@ -48,8 +48,8 @@ a:hover {
 
 .input-container i {
     padding-top: 25px;
-    border-bottom: 1px solid #3bceff;
-    color: #008cba;
+    border-bottom: 1px solid #CB4B16;
+    color: #CB4B16;
 }
 
 input:disabled,
@@ -63,7 +63,7 @@ input:disabled,
 input,
 .select-form {
     border: 0;
-    border-bottom: 1px solid #3bceff;
+    border-bottom: 1px solid #CB4B16;
     background-color: transparent;
     font-size: 1.640625rem;
     font-weight: 300;
@@ -94,7 +94,7 @@ input:focus,
 }
 
 .container-line {
-    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    border-top: 1px solid gray;
     margin: 1.5rem 0 2rem 0;
 }
 
