@@ -106,8 +106,8 @@
     <div class="button-div">
       <button class="btn btn-primary edit-button" (click)="editTicket()" *ngIf="isViewMode">Edytuj</button>
       <button class="btn btn-info edit-button w-10" (click)="cancel()" *ngIf="!isViewMode">Odrzuć</button>
-      <button class="btn btn-primary edit-button w-10" (click)="update()" *ngIf="!isViewMode">Zapisz</button>
-
+      <button class="btn btn-primary edit-button w-10" (click)="update()" *ngIf="!isViewMode" [disabled]="!editForm.valid">Zapisz</button>
+      <button class="btn btn-danger edit-button w-10" (click)="closeTicket(ticket.id)" *ngIf="!isViewMode" [disabled]="!editForm.valid">Zamknij</button> 
     </div>
   </div>
 

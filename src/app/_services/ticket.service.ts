@@ -24,6 +24,11 @@ export class TicketService {
       params = params.append('pageSize', itemsPerPage);
     }
 
+    if (ticketParams != null && ticketParams.isviewmytickets !=null && ticketParams.isviewmytickets !==undefined 
+        && ticketParams.isviewmytickets === 1) {
+      params = params.append('userId', localStorage.getItem('token'));
+    }
+
     if (ticketParams != null && ticketParams.status !=null && ticketParams.status !==undefined) {
       params = params.append('status', ticketParams.status);
     }
@@ -59,5 +64,16 @@ export class TicketService {
 
   deleteTicket(id: number) {
     return this.http.delete(this.baseUrl + 'tickets/' + id);
+  }
+
+  pickUp(id: number) {
+    return this.http.post(this.baseUrl + 'tickets/' + id + '/pickup', {
+      token: localStorage.getItem('token')
+    });
+  }
+  closeTicket(id: number) {
+    return this.http.post(this.baseUrl + 'tickets/' + id + '/close', {
+      token: localStorage.getItem('token')
+    });
   }
 }

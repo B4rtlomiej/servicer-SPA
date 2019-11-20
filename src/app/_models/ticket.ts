@@ -1,4 +1,5 @@
 import { Item } from './item';
+import { User } from './user';
 
 export interface Ticket {
     id: number;
@@ -11,4 +12,5 @@ export interface Ticket {
     subject: string;
     description?: string;
     item: Item;
+    user: User;
 }

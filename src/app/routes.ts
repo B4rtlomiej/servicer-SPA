@@ -5,7 +5,6 @@ import { AdminGuard } from './_guards/admin.guard';
 import { HomeComponent } from './home/home.component';
 import { MyTicketsComponent } from './tickets/my-tickets/my-tickets.component';
 import { AllTicketsComponent } from './tickets/all-tickets/all-tickets.component';
-import { NewTicketComponent } from './tickets/new-ticket/new-ticket.component';
 import { UserListComponent } from './users/user-list/user-list.component';
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { UserDetailResolver } from './_resolvers/user-detail.resolver';
@@ -27,10 +26,9 @@ export const appRoutes: Routes = [
         runGuardsAndResolvers: 'always',
         canActivate: [AuthGuard],
         children: [
-            { path: 'mytickets', component: MyTicketsComponent },
+            { path: 'mytickets', component: MyTicketsComponent, resolve: { mytickets: TicketListResolver } },
             { path: 'tickets', component: AllTicketsComponent, resolve: { tickets: TicketListResolver } },
             { path: 'tickets/:id', component: TicketDetailComponent, resolve: { ticket: TicketDetailResolver } },
-            { path: 'newticket', component: NewTicketComponent },
         ]
     },
     {
