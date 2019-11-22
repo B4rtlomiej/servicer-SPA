@@ -119,5 +119,4 @@ export class ProductSpecificationListComponent implements OnInit {
     this.productSpecification = null;
     this.modalRef.hide();
   }
-
 }

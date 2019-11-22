@@ -24,20 +24,22 @@ export class TicketService {
       params = params.append('pageSize', itemsPerPage);
     }
 
-    if (ticketParams != null && ticketParams.isviewmytickets !=null && ticketParams.isviewmytickets !==undefined 
-        && ticketParams.isviewmytickets === 1) {
+    if (ticketParams && ticketParams.IsViewMyTickets === 1) {
       params = params.append('userId', localStorage.getItem('token'));
     }
 
-    if (ticketParams != null && ticketParams.status !=null && ticketParams.status !==undefined) {
+    if (ticketParams && ticketParams.status) {
       params = params.append('status', ticketParams.status);
     }
-    if (ticketParams != null && ticketParams.priority !=null && ticketParams.priority !==undefined) {
+
+    if (ticketParams && ticketParams.priority) {
       params = params.append('priority', ticketParams.priority);
     }
-    if (ticketParams != null && ticketParams.orderBy !=null && ticketParams.orderBy !==undefined) {
+
+    if (ticketParams && ticketParams.orderBy) {
       params = params.append('orderBy', ticketParams.orderBy);
     }
+
     return this.http.get<Ticket[]>(this.baseUrl + 'tickets', {observe: 'response', params})
     .pipe(
       map(response => {
@@ -50,7 +52,7 @@ export class TicketService {
     );
   }
 
-  getTicket(id): Observable<Ticket> {
+  getTicket(id: number): Observable<Ticket> {
     return this.http.get<Ticket>(this.baseUrl + 'tickets/' + id);
   }
 
@@ -71,6 +73,7 @@ export class TicketService {
       token: localStorage.getItem('token')
     });
   }
+  
   closeTicket(id: number) {
     return this.http.post(this.baseUrl + 'tickets/' + id + '/close', {
       token: localStorage.getItem('token')

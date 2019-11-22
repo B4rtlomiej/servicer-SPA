@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../_models/user';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { AdminModeService } from 'src/app/_services/admin-mode.service';
 import { UserService } from 'src/app/_services/user.service';
 import { ToastrService } from 'src/app/_services/toastr.service';
@@ -20,8 +20,8 @@ export class UserListComponent implements OnInit {
     { value: 'Agent', display: 'Agent' }
   ];
   activeInactiveList = [
-    { value: 'true', display: 'Active' },
-    { value: 'false', display: 'Inactive' }
+    { value: 'true', display: 'Aktywny' },
+    { value: 'false', display: 'Nieaktywny' }
   ];
 
   userParams: any = {};
@@ -68,6 +68,7 @@ export class UserListComponent implements OnInit {
         }
       );
   }
+
   resetPassword(id: number) {
     this.userService.resetPassword(id).subscribe(
       () => {

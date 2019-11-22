@@ -49,5 +49,4 @@ export class NavComponent implements OnInit {
     this.router.navigate(['/users']);
     this.adminMode.emit(true);
   }
-
 }

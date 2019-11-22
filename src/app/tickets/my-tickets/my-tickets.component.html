@@ -3,15 +3,15 @@
 
   
   <div class="px-2" style="display: none;">
-    <label for="priority">MyTickets</label>
-    <select class="form-control ml-1" style="width: 130px" id="isviewmytickets" [(ngModel)]="ticketParams.isviewmytickets" name="isviewmytickets">
-      <option *ngFor="let isviewmytickets of myticketsview" [value]="isviewmytickets.value">
-        {{isviewmytickets.display}}
+    <label for="IsViewMyTickets">MyTickets</label>
+    <select class="form-control ml-1" style="width: 130px" id="IsViewMyTickets" [(ngModel)]="ticketParams.IsViewMyTickets" name="IsViewMyTickets">
+      <option *ngFor="let IsViewMyTickets of myticketsview" [value]="IsViewMyTickets.value">
+        {{IsViewMyTickets.display}}
       </option>
     </select>
   </div>
   <div class="px-2">
-    <label for="priority">Status</label>
+    <label for="status">Status</label>
     <select class="form-control ml-1" style="width: 130px" id="status" [(ngModel)]="ticketParams.status" name="status">
       <option *ngFor="let status of statuses" [value]="status.value">
         {{status.display}}
@@ -38,7 +38,7 @@
 </form>
 
 <div class="row justify-content-center">
-  <table class="col-md-8 table table-info ">
+  <table class="col-md-10 table table-info ">
     <thead>
       <tr>
         <th scope="col">Id</th>

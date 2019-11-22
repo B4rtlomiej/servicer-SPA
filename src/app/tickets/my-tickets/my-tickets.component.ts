@@ -14,16 +14,18 @@ export class MyTicketsComponent implements OnInit {
   mytickets: Ticket[];
   pagination: Pagination;
   ticketParams: any = {};
+
   priorities = [
-    { value: '0', display: 'Low' },
-    { value: '1', display: 'Medium' },
-    { value: '2', display: 'High' }
+    { value: '0', display: 'Niski' },
+    { value: '1', display: 'Średni' },
+    { value: '2', display: 'Wysoki' }
   ];
 
   statuses = [
-    { value: '0', display: 'New' },
-    { value: '1', display: 'WorkedOn' },
-    { value: '2', display: 'Completed' }
+    { value: '0', display: 'Nowe' },
+    { value: '1', display: 'W trakcie' },
+    { value: '2', display: 'Zrobione' },
+    { value: '3', display: 'Zamknięte' }
   ];
 
   myticketsview = [
@@ -42,20 +44,23 @@ export class MyTicketsComponent implements OnInit {
     this.ticketParams.status = 1;
     this.ticketParams.priority = 0;
     this.ticketParams.orderBy = 'lastOpen';
-    this.ticketParams.isviewmytickets = 1;
+    this.ticketParams.IsViewMyTickets = 1;
     this.loadTicket();
   }
+
   pageChanged(event: any): void {
     this.pagination.currentPage = event.page;
     this.loadTicket();
   }
+
   resetFilters() {
     this.ticketParams.status = 1;
     this.ticketParams.priority = 0;
     this.ticketParams.orderBy = 'lastOpen';
-    this.ticketParams.isviewmytickets = 1;
+    this.ticketParams.IsViewMyTickets = 1;
     this.loadTicket();
   }
+
   loadTicket() {
     this.ticketService
     .getTickets(this.pagination.currentPage, this.pagination.itemsPerPage, this.ticketParams)
@@ -67,6 +72,7 @@ export class MyTicketsComponent implements OnInit {
       this.toastr.error(error);
     });
   }
+
   public deleteTicket(ticket: Ticket) {
     this.ticketService.deleteTicket(ticket.id).subscribe(() => {
       const index = this.mytickets.indexOf(ticket);
