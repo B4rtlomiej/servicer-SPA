@@ -76,9 +76,9 @@ export class TicketDetailComponent implements OnInit {
   closeTicket(id: number) {
     this.spinner.show();
     this.ticketService.closeTicket(id).subscribe(() => {
+      this.modalRef.hide();
       this.spinner.hide();
       this.toastr.success('Zamknięto zgłoszenie.');
-      this.modalRef.hide();
     }, error => {
       this.spinner.hide();
       this.modalRef.hide();
