@@ -1,4 +1,4 @@
-<form class="form-inline" style="margin-left: 50%; margin-bottom: 1%;" #form="ngForm" (ngSubmit)="loadTicket()"
+<form class="form-inline" style="margin-left: 55%; margin-bottom: 1%;" #form="ngForm" (ngSubmit)="loadTicket()"
   novalidate>
 
   <div class="px-2">
@@ -22,9 +22,9 @@
     <button type='submit' class="btn btn-primary" style="margin-left:10px">Zastosuj filtry</button>
     <button type='button' class="btn btn-info" style="margin-left:10px" (click)="resetFilters()">Resetuj filtry</button>
     <button type="button" name="orderBy" class="btn btn-primary" style="margin-left:10px" btnRadio="lastOpen"
-      [(ngModel)]="ticketParams.orderBy" (click)="loadTicket()">Last Open</button>
+      [(ngModel)]="ticketParams.orderBy" (click)="loadTicket()">Ostatnio otwarte</button>
     <button type="button" name="orderBy" class="btn btn-primary" btnRadio="lastClosed"
-      [(ngModel)]="ticketParams.orderBy" (click)="loadTicket()">Last Closed</button>
+      [(ngModel)]="ticketParams.orderBy" (click)="loadTicket()">Ostatnio zamknięte</button>
   </div>
 </form>
 
