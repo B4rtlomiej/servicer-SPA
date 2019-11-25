@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Ticket } from 'src/app/_models/ticket';
 import { ActivatedRoute, Router } from '@angular/router';
-
 import { ToastrService } from 'src/app/_services/toastr.service';
 import { TicketService } from 'src/app/_services/ticket.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-ticket-detail',
@@ -15,9 +16,11 @@ export class TicketDetailComponent implements OnInit {
   public ticket: Ticket;
   public editForm: FormGroup;
   public isViewMode = true;
+  modalRef: BsModalRef;
 
-  constructor(private ticketService: TicketService, private router: Router, private formBuilder: FormBuilder,
-    private toastr: ToastrService, private route: ActivatedRoute) { }
+  constructor(private ticketService: TicketService, private router: Router, private formBuilder: FormBuilder, 
+    private toastr: ToastrService, private route: ActivatedRoute, private spinner: NgxSpinnerService, 
+    private modalService: BsModalService) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
@@ -68,5 +71,25 @@ export class TicketDetailComponent implements OnInit {
     }, error => {
       this.toastr.error(error);
     });
+  }
+
+  closeTicket(id: number) {
+    this.modalRef.hide();
+    this.spinner.show();
+    this.ticketService.closeTicket(id).subscribe(() => {
+      this.spinner.hide();
+      this.toastr.success('Zamknięto zgłoszenie.');
+    }, error => {
+      this.spinner.hide();
+      this.toastr.error(error);
+    });
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
+ 
+  decline(): void {
+    this.modalRef.hide();
   }
 }

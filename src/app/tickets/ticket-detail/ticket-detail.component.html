@@ -106,8 +106,15 @@
     <div class="button-div">
       <button class="btn btn-primary edit-button" (click)="editTicket()" *ngIf="isViewMode">Edytuj</button>
       <button class="btn btn-info edit-button w-10" (click)="cancel()" *ngIf="!isViewMode">Odrzuć</button>
-      <button class="btn btn-primary edit-button w-10" (click)="update()" *ngIf="!isViewMode">Zapisz</button>
-
+      <button class="btn btn-primary edit-button w-10" (click)="update()" *ngIf="!isViewMode" [disabled]="!editForm.valid">Zapisz</button>       
+      <button type="button" class="btn btn-danger" (click)="openModal(template)" *ngIf="isViewMode">Zamknij</button> 
+      <ng-template #template>
+        <div class="modal-body text-center">
+          <p>Czy na pewno chcesz zamknąć zgłoszenie?</p>
+          <button type="button" class="btn btn-primary" (click)="closeTicket(ticket.id)" >Tak</button>
+          <button type="button" class="btn btn-default" (click)="decline()" >Nie</button>
+        </div>
+      </ng-template>
     </div>
   </div>
 

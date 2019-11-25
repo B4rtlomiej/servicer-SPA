@@ -7,5 +7,4 @@ export class AdminModeService {
   isAdminMode = false;
 
   constructor() { }
-
 }

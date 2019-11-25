@@ -1,0 +1,17 @@
+.data-row:hover {
+    background-color: #008cba;
+}
+
+.data-row th, .data-row td {
+    vertical-align: middle;
+}
+
+.btn {
+    font-size: 0.8rem;
+}
+
+.name-span {
+    color: yellow;
+    font-weight: 500;
+    cursor: pointer;
+}
