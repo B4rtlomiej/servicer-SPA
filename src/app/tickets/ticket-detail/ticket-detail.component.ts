@@ -40,6 +40,7 @@ export class TicketDetailComponent implements OnInit {
   loadTicket() {
     this.ticketService.getTicket(this.ticket.id).subscribe((response) => {
       this.ticket = response;
+      this.createEditForm();
     }, error => {
       this.toastr.error(error);
     });;
