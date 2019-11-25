@@ -1,6 +1,7 @@
 import { Person } from './person';
 
 export interface Customer {
-    person: Person;
+    id: number;
     supportLevel: string;
+    person: Person;
 }

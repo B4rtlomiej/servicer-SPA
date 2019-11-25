@@ -124,6 +124,93 @@
     </div>
     <hr class="container-line">
     <div class="notes-container__body">
+      <accordion [isAnimated]="true">
+        <accordion-group heading="Dotyczące zgłoszenia">
+          <div class="row" *ngFor="let note of ticket.ticketNotes">
+            <div class="col-10">
+              <p class="note-container">
+                {{ note.text }}
+              </p>
+            </div>
+            <div class="col-2" (click)="deleteNote(note.id)"><i class="fa fa-times note-icon" title="Usuń notatkę"></i></div>
+          </div>
+          <div class="add-button-container" *ngIf="!addTicketNoteRowMode">
+            <button class="btn btn-success" (click)="addNoteRow('ticket')">
+              <i class="fa fa-plus-circle mr-1"></i>
+              Dodaj
+            </button>
+          </div>
+          <textarea class="note-area" *ngIf="addTicketNoteRowMode" [(ngModel)]="newNote"></textarea>
+          <div class="add-button-container" *ngIf="addTicketNoteRowMode">
+            <button class="btn btn-info edit-button" (click)="cancelNote()">Odrzuć</button>
+            <button class="btn btn-primary edit-button" (click)="addNote('ticket')">Dodaj</button>
+          </div>
+        </accordion-group>
+        <accordion-group heading="Dotyczące zgłaszającego">
+          <div class="row" *ngFor="let note of ticket.customerNotes">
+            <div class="col-10">
+              <p class="note-container">
+                {{ note.text }}
+              </p>
+            </div>
+            <div class="col-2" (click)="deleteNote(note.id)"><i class="fa fa-times note-icon" title="Usuń notatkę"></i></div>
+          </div>
+          <div class="add-button-container" *ngIf="!addCustomerNoteRowMode">
+            <button class="btn btn-success" (click)="addNoteRow('customer')">
+              <i class="fa fa-plus-circle mr-1"></i>
+              Dodaj
+            </button>
+          </div>
+          <textarea class="note-area" *ngIf="addCustomerNoteRowMode" [(ngModel)]="newNote"></textarea>
+          <div class="add-button-container" *ngIf="addCustomerNoteRowMode">
+            <button class="btn btn-info edit-button" (click)="cancelNote()">Odrzuć</button>
+            <button class="btn btn-primary edit-button" (click)="addNote('customer')">Dodaj</button>
+          </div>
+        </accordion-group>
+        <accordion-group heading="Dotyczące przedmiotu">
+          <div class="row" *ngFor="let note of ticket.itemNotes">
+            <div class="col-10">
+              <p class="note-container">
+                {{ note.text }}
+              </p>
+            </div>
+            <div class="col-2" (click)="deleteNote(note.id)"><i class="fa fa-times note-icon" title="Usuń notatkę"></i></div>
+          </div>
+          <div class="add-button-container" *ngIf="!addItemNoteRowMode">
+            <button class="btn btn-success" (click)="addNoteRow('item')">
+              <i class="fa fa-plus-circle mr-1"></i>
+              Dodaj
+            </button>
+          </div>
+          <textarea class="note-area" *ngIf="addItemNoteRowMode" [(ngModel)]="newNote"></textarea>
+          <div class="add-button-container" *ngIf="addItemNoteRowMode">
+            <button class="btn btn-info edit-button" (click)="cancelNote()">Odrzuć</button>
+            <button class="btn btn-primary edit-button" (click)="addNote('item')">Dodaj</button>
+          </div>
+        </accordion-group>
+        <accordion-group heading="Dotyczące produktu">
+          <div class="row" *ngFor="let note of ticket.productSpecificationNotes">
+            <div class="col-10">
+              <p class="note-container">
+                {{ note.text }}
+              </p>
+            </div>
+            <div class="col-2" (click)="deleteNote(note.id)"><i class="fa fa-times note-icon" title="Usuń notatkę"></i></div>
+          </div>
+          <div class="add-button-container" *ngIf="!addProductSpecificationNoteRowMode">
+            <button class="btn btn-success" (click)="addNoteRow('productSpecification')">
+              <i class="fa fa-plus-circle mr-1"></i>
+              Dodaj
+            </button>
+          </div>
+          <textarea class="note-area" *ngIf="addProductSpecificationNoteRowMode" [(ngModel)]="newNote"></textarea>
+          <div class="add-button-container" *ngIf="addProductSpecificationNoteRowMode">
+            <button class="btn btn-info edit-button" (click)="cancelNote()">Odrzuć</button>
+            <button class="btn btn-primary edit-button" (click)="addNote('productSpecification')">Dodaj</button>
+          </div>
+        </accordion-group>
+      </accordion>
     </div>
   </div>
 </div>
+<ngx-spinner bdColor="rgba(255, 255, 255, 0.5)" type="ball-spin-clockwise" color="#008cba"></ngx-spinner>
