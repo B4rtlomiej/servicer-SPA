@@ -5,6 +5,7 @@
       <hr>
 
       <div formGroupName="person">
+        <label for="firstName">Imię</label>
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Imię" formControlName="firstName"
             [ngClass]="{'is-invalid': registerForm.get('person.firstName').errors && registerForm.get('person.firstName').touched}">
@@ -12,12 +13,14 @@
         </div>
 
         <div class="form-group">
+         <label for="lastName">Nazwisko</label>
           <input type="text" class="form-control" placeholder="Nazwisko" formControlName="lastName"
             [ngClass]="{'is-invalid': registerForm.get('person.lastName').errors && registerForm.get('person.lastName').touched}">
           <div class="invalid-feedback">Nazwisko jest wymagane. Maksymalna liczba znaków to 50.</div>
         </div>
 
         <div class="form-group">
+          <label for="email">E-mail</label>
           <input type="text" class="form-control" placeholder="E-mail" formControlName="email"
             [ngClass]="{'is-invalid': registerForm.get('person.email').errors && registerForm.get('person.email').touched}">
           <div *ngIf="registerForm.get('person.email').hasError('required') && registerForm.get('person.email').touched"
@@ -31,6 +34,7 @@
         </div>
 
         <div class="form-group">
+          <label for="phone">Numer telefonu</label>
           <input type="text" class="form-control" placeholder="Numer telefonu" formControlName="phone"
             [ngClass]="{'is-invalid': registerForm.get('person.phone').errors && registerForm.get('person.phone').touched}">
           <div class="invalid-feedback">Proszę podać poprawny numer telefonu.</div>
@@ -47,6 +51,7 @@
       </div>
 
       <div class="form-group">
+        <label for="username">Nazwa użytkownika</label>
         <input type="text" class="form-control" placeholder="Nazwa użytkownika" formControlName="username"
           [ngClass]="{'is-invalid': registerForm.get('username').errors && registerForm.get('username').touched}">
         <div class="invalid-feedback">Nazwa użytkownika musi mieć od 6 do 50 znaków.</div>

@@ -14,23 +14,28 @@ export class ProductSpecificationService {
 
   constructor(private http: HttpClient) { }
 
-  getProductSpecifications(page?,itemsPerPage?,productParams?): Observable<PaginatedResult<ProductSpecification[]>> {
+  getProductSpecifications(page?, itemsPerPage?, productParams?): Observable<PaginatedResult<ProductSpecification[]>> {
     const paginatedResult: PaginatedResult<ProductSpecification[]> = new PaginatedResult<ProductSpecification[]>();
 
     let params = new HttpParams();
+
     if (page != null && itemsPerPage != null) {
       params = params.append('pageNumber', page);
       params = params.append('pageSize', itemsPerPage);
     }
-    if (productParams != null && productParams.isActive !=null && productParams.isActive !==undefined) {
+
+    if (productParams && productParams.isActive) {
       params = params.append('isActive', productParams.isActive);
     }
-    if (productParams != null && productParams.column !=null && productParams.column !==undefined) {
+
+    if (productParams && productParams.column) {
       params = params.append('column', productParams.column);
     }
-    if (productParams != null && productParams.sorting !=null && productParams.sorting !==undefined) {
+
+    if (productParams && productParams.sorting) {
         params = params.append('sorting', productParams.sorting);
     }
+
     return this.http
       .get<ProductSpecification[]>(this.baseUrl + 'productspecifications', { observe: 'response', params })
       .pipe(

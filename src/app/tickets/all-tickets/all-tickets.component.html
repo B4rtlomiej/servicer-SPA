@@ -1,4 +1,4 @@
-<form class="form-inline" style="margin-left: 50%; margin-bottom: 1%;" #form="ngForm" (ngSubmit)="loadTicket()"
+<form class="form-inline" style="margin-left: 55%; margin-bottom: 1%;" #form="ngForm" (ngSubmit)="loadTicket()"
   novalidate>
 
   <div class="px-2">
@@ -22,14 +22,14 @@
     <button type='submit' class="btn btn-primary" style="margin-left:10px">Zastosuj filtry</button>
     <button type='button' class="btn btn-info" style="margin-left:10px" (click)="resetFilters()">Resetuj filtry</button>
     <button type="button" name="orderBy" class="btn btn-primary" style="margin-left:10px" btnRadio="lastOpen"
-      [(ngModel)]="ticketParams.orderBy" (click)="loadTicket()">Last Open</button>
+      [(ngModel)]="ticketParams.orderBy" (click)="loadTicket()">Ostatnio otwarte</button>
     <button type="button" name="orderBy" class="btn btn-primary" btnRadio="lastClosed"
-      [(ngModel)]="ticketParams.orderBy" (click)="loadTicket()">Last Closed</button>
+      [(ngModel)]="ticketParams.orderBy" (click)="loadTicket()">Ostatnio zamknięte</button>
   </div>
 </form>
 
 <div class="row justify-content-center">
-  <table class="col-md-8 table table-info ">
+  <table class="col-md-10 table table-info ">
     <thead>
       <tr>
         <th scope="col">Id</th>
@@ -40,6 +40,8 @@
         <th scope="col">Rok Produkcji</th>
         <th scope="col">Stworzono</th>
         <th scope="col">Zamknięto</th>
+        <th scope="col">Przypisany użytkownik</th>
+        <th scope="col"> </th>
         <th scope="col">Akcje</th>
       </tr>
     </thead>
@@ -57,8 +59,16 @@
         <td>{{ ticket.item?.productionYear | date: 'yyyy' }}</td>
         <td>{{ ticket.created | date: 'H:mm, dd/MM/yyyy' }}</td>
         <td>{{ ticket.closed | date: 'H:mm, dd/MM/yyyy' }}</td>
+        <td>{{ ticket.user?.username }}</td>
         <td>
           <div class="btn-group">
+              <button type="button" class="btn btn-warning w-110" (click)="pickUp(ticket.id)" *ngIf="ticket.user == null">
+                  Podejmij
+                </button>
+              </div>
+            </td>
+            <td>
+                <div class="btn-group">
             <button type="button" class="btn btn-success" [routerLink]="['/tickets/', ticket.id]">
               <i class="fa fa-edit mr-1"></i>Edytuj</button>
             <button type="button" class="btn btn-danger" (click)="deleteTicket(ticket)">Usuń</button>

@@ -1,5 +1,6 @@
 import { Item } from './item';
 import { Note } from './note';
+import { User } from './user';
 
 export interface Ticket {
     id: number;
@@ -16,5 +17,5 @@ export interface Ticket {
     customerNotes: Note[];
     itemNotes: Note[];
     productSpecificationNotes: Note[];
-
+    user: User;
 }

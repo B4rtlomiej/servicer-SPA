@@ -14,7 +14,6 @@ import { RegisterComponent } from './register/register.component';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { MyTicketsComponent } from './tickets/my-tickets/my-tickets.component';
 import { AllTicketsComponent } from './tickets/all-tickets/all-tickets.component';
-import { NewTicketComponent } from './tickets/new-ticket/new-ticket.component';
 import { appRoutes } from './routes';
 import { NavAdminComponent } from './nav-admin/nav-admin.component';
 import { UserListComponent } from './users/user-list/user-list.component';
@@ -47,7 +46,6 @@ export function tokenRetriver() {
       MyTicketsComponent,
       AllTicketsComponent,
       TicketDetailComponent,
-      NewTicketComponent,
       NavAdminComponent,
       UserListComponent,
       UserDetailComponent,
