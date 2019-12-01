@@ -8,6 +8,7 @@ import { Note } from 'src/app/_models/note';
 import { NoteService } from 'src/app/_services/note.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'app-ticket-detail',
@@ -15,25 +16,27 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap';
   styleUrls: ['./ticket-detail.component.css']
 })
 export class TicketDetailComponent implements OnInit {
-  public ticket: Ticket;
-  public editForm: FormGroup;
-  public isViewMode = true;
-  public addTicketNoteRowMode = false;
-  public addCustomerNoteRowMode = false;
-  public addItemNoteRowMode = false;
-  public addProductSpecificationNoteRowMode = false;
+  ticket: Ticket;
+  editForm: FormGroup;
+  isViewMode = true;
+  addTicketNoteRowMode = false;
+  addCustomerNoteRowMode = false;
+  addItemNoteRowMode = false;
+  addProductSpecificationNoteRowMode = false;
+  hasEditAccess = false;
   newNote: string;
   note: Note;
   modalRef: BsModalRef;
 
-  constructor(private ticketService: TicketService, private router: Router, private formBuilder: FormBuilder,
-    private toastr: ToastrService, private route: ActivatedRoute, private noteService: NoteService,
-    private spinner: NgxSpinnerService, private modalService: BsModalService) { }
+  constructor(private ticketService: TicketService, private router: Router, private authService: AuthService,
+    private formBuilder: FormBuilder, private toastr: ToastrService, private route: ActivatedRoute,
+    private noteService: NoteService, private spinner: NgxSpinnerService, private modalService: BsModalService) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
       this.ticket = data.ticket;
     });
+    this.hasEditAccess = this.authService.isAdmin() || (this.ticket.user && this.authService.isOwner(this.ticket.user.id));
     this.createEditForm();
   }
 

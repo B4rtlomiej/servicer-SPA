@@ -70,9 +70,9 @@
         <td>{{ ticket.user?.username }}</td>
         <td>
           <div class="btn-group">
-            <button type="button" class="btn btn-success" [routerLink]="['/tickets/', ticket.id]">
+            <button type="button" class="btn btn-success" *ngIf="isAdmin || ticket.user?.id == userId" [routerLink]="['/tickets/', ticket.id]">
               <i class="fa fa-edit mr-1"></i>Edytuj</button>
-            <button type="button" class="btn btn-danger" (click)="deleteTicket(ticket)">Usuń</button>
+            <button type="button" class="btn btn-danger" *ngIf="isAdmin" (click)="deleteTicket(ticket)">Usuń</button>
           </div>
         </td>
       </tr>

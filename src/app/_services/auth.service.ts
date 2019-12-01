@@ -45,4 +45,12 @@ export class AuthService {
   isAdmin() {
     return this.decodedToken.role === 'Admin';
   }
+
+  getUserId() {
+    return Number(this.decodedToken.nameid);
+  }
+
+  isOwner(userId: number) {
+    return Number(this.decodedToken.nameid) === userId;
+  }
 }

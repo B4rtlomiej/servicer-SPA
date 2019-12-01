@@ -4,6 +4,7 @@ import { Ticket } from 'src/app/_models/ticket';
 import { TicketService } from 'src/app/_services/ticket.service';
 import { ToastrService } from 'src/app/_services/toastr.service';
 import { Pagination, PaginatedResult } from 'src/app/_models/pagination';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'app-my-tickets',
@@ -14,6 +15,8 @@ export class MyTicketsComponent implements OnInit {
   mytickets: Ticket[];
   pagination: Pagination;
   ticketParams: any = {};
+  userId: number;
+  isAdmin = false;
 
   priorities = [
     { value: '0', display: 'Niski' },
@@ -34,7 +37,7 @@ export class MyTicketsComponent implements OnInit {
   ];
  
   constructor(private route: ActivatedRoute, private router: Router, private ticketService: TicketService,
-    private toastr: ToastrService) { }
+    private authService: AuthService, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
@@ -45,6 +48,8 @@ export class MyTicketsComponent implements OnInit {
     this.ticketParams.priority = 0;
     this.ticketParams.orderBy = 'lastOpen';
     this.ticketParams.IsViewMyTickets = 1;
+    this.isAdmin = this.authService.isAdmin();
+    this.userId = this.authService.getUserId();
     this.loadTicket();
   }
 
