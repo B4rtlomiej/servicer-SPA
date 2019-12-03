@@ -5,7 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { BsDropdownModule, PaginationModule, ButtonsModule } from 'ngx-bootstrap';
 import { JwtModule } from '@auth0/angular-jwt';
-
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { AuthService } from './_services/auth.service';
@@ -32,6 +31,10 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { PersonListResolver } from './_resolvers/person-list.resolver';
+import { PersonListComponent } from './persons/person-list/person-list.component';
+import { PersonDetailComponent } from './persons/person-detail/person-detail.component';
+import { PersonDetailResolver } from './_resolvers/person-detail.resolver';
 
 export function tokenRetriver() {
    return localStorage.getItem('token');
@@ -51,7 +54,9 @@ export function tokenRetriver() {
       UserDetailComponent,
       UserRegisterComponent,
       UserActivateComponent,
-      ProductSpecificationListComponent
+      ProductSpecificationListComponent,
+      PersonListComponent,
+      PersonDetailComponent
    ],
    imports: [
       BrowserModule,
@@ -81,7 +86,9 @@ export function tokenRetriver() {
       UserListResolver,
       TicketDetailResolver,
       TicketListResolver,
-      ProductSpecificationListResolver
+      ProductSpecificationListResolver,
+      PersonListResolver,
+      PersonDetailResolver
    ],
    bootstrap: [
       AppComponent
