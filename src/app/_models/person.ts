@@ -7,5 +7,6 @@ export interface Person {
     email: string;
     phone: string;
     sex?: string;
-    personNotes: Note[];
+    customerNotes: Note[];
+    customerId: number;
 }

@@ -60,8 +60,9 @@
         </div>
         <hr class="container-line">
          <div class="notes-container__body">
+            <accordion [isAnimated]="true">
             <accordion-group heading="Dotyczące zgłaszającego">
-                <div class="row" *ngFor="let note of person.personNotes">
+                <div class="row" *ngFor="let note of person.customerNotes">
                   <div class="col-10">
                     <p class="note-container">
                       {{ note.text }}
@@ -81,6 +82,10 @@
                   <button class="btn btn-primary edit-button" (click)="addNote('customer')">Dodaj</button>
                 </div>
               </accordion-group>
+            </accordion>
+         </div>
+    </div>
+</div>
 <div class="row justify-content-center" style="margin-top: 3%;">
     <table class="col-md-10 table table-info ">
       <thead>
