@@ -59,24 +59,34 @@
             <h1>Notatki</h1>
         </div>
         <hr class="container-line">
-        <!-- <div class="notes-container__body">
-        <p>{{ editForm.value | json }}</p>
-         <p>{{ user | json }}
-      </div> -->
-    </div>
-  </div>
-
-<div class="btn-group" id="ticketsOfCustomer">
-    <button type="button" class="btn btn-success w-110" (click)="customerTickets(person.id)">
-        <i class="fa fa-person mr-1"></i>Pokaż zgłoszenia klienta {{ person.id }}</button>
-</div>
-<div class="row justify-content-center">
+         <div class="notes-container__body">
+            <accordion-group heading="Dotyczące zgłaszającego">
+                <div class="row" *ngFor="let note of person.personNotes">
+                  <div class="col-10">
+                    <p class="note-container">
+                      {{ note.text }}
+                    </p>
+                  </div>
+                  <div class="col-2" (click)="deleteNote(note.id)"><i class="fa fa-times note-icon" title="Usuń notatkę"></i></div>
+                </div>
+                <div class="add-button-container" *ngIf="!addCustomerNoteRowMode">
+                  <button class="btn btn-success" (click)="addNoteRow('customer')">
+                    <i class="fa fa-plus-circle mr-1"></i>
+                    Dodaj
+                  </button>
+                </div>
+                <textarea class="note-area" *ngIf="addCustomerNoteRowMode" [(ngModel)]="newNote"></textarea>
+                <div class="add-button-container" *ngIf="addCustomerNoteRowMode">
+                  <button class="btn btn-info edit-button" (click)="cancelNote()">Odrzuć</button>
+                  <button class="btn btn-primary edit-button" (click)="addNote('customer')">Dodaj</button>
+                </div>
+              </accordion-group>
+<div class="row justify-content-center" style="margin-top: 3%;">
     <table class="col-md-10 table table-info ">
       <thead>
         <tr *ngIf = 'isShow'>
           <th scope="col">Temat</th>
-          <th scope="col">Opis</th>
-          <th scope="col">Nazwa</th>
+          <th scope="col">Model</th>
           <th scope="col">Status</th>
           <th scope="col">Priorytet</th>
           <th scope="col">Rok Produkcji</th>
@@ -86,12 +96,13 @@
       </thead>
       <tbody>
         <tr class="data-row" *ngFor="let ticket of tickets">
-            <td>{{ ticket.subject }}</td>
-            <td>{{ ticket.description }}</td>
           <td>
-            <span class="name-span" [routerLink]="['/tickets/', ticket.id]">
+              <span class="name-span" [routerLink]="['/tickets/', ticket.id]">
+                {{ ticket.subject }}
+              </span>
+          </td>
+          <td>
               {{ ticket.item?.productSpecification?.series }} {{ ticket.item?.productSpecification?.name }}
-            </span>
           </td>
           <td>{{ ticket.status }}</td>
           <td>{{ ticket.priority }}</td>
@@ -100,11 +111,10 @@
           <td>
             <div class="btn-group">
               <button type="button" class="btn btn-success" [routerLink]="['/tickets/', ticket.id]">
-                <i class="fa fa-edit mr-1"></i>Edytuj</button>
+                <i class="fa fa-edit mr-1"></i>Pokaż szczegóły</button>
             </div>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
-</div>

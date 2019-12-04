@@ -8,6 +8,8 @@ import { Ticket } from 'src/app/_models/ticket';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { TicketService } from 'src/app/_services/ticket.service';
 import { Pagination, PaginatedResult } from 'src/app/_models/pagination';
+import { Note } from 'src/app/_models/note';
+import { NoteService } from 'src/app/_services/note.service';
 
 @Component({
   selector: 'app-person-detail',
@@ -25,16 +27,22 @@ export class PersonDetailComponent implements OnInit {
   
   tickets: Ticket[];
   ticketParams: any = {};
-  
+
   isShow: boolean;
+
+  public addCustomerNoteRowMode = false;
+  newNote: string;
+  note: Note;
+  
   constructor(private personService: PersonService, private router: Router, private formBuilder: FormBuilder,
     private toastr: ToastrService, private route: ActivatedRoute, private ticketService: TicketService, 
-    private spinner: NgxSpinnerService) { }
+    private noteService: NoteService, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
       this.isShow = false;
       this.person = data.person;
+      this.customerTickets(this.person.id);
     });
     this.createEditForm();
   }
@@ -92,7 +100,6 @@ export class PersonDetailComponent implements OnInit {
     this.spinner.show();
     this.ticketService.customerTickets(id).subscribe(
       () => {
-        this.isShow = true;
         this.loadCustomerTickets(id);
         this.spinner.hide();
       },
@@ -109,11 +116,48 @@ export class PersonDetailComponent implements OnInit {
     .subscribe(
       (res: PaginatedResult<Ticket[]>) => {
       this.tickets = res.result;
-      console.log(res);
-      console.log(res.result);
+      this.isShow = res.result.length !== 0;
       this.pagination = res.pagination;
     }, error => {
       this.toastr.error(error);
     });
   }
+
+  addNoteRow(mode: string) {
+    this.cancelNote();
+    if (mode === 'customer') {
+      this.addCustomerNoteRowMode = true;
+    }
+  }
+
+  cancelNote() {
+    this.addCustomerNoteRowMode = false;
+    this.newNote = null;
+  }
+
+  deleteNote(noteId: number) {
+    this.spinner.show();
+    this.noteService.deleteNote(noteId).subscribe(() => {
+      this.spinner.hide();
+      this.toastr.success('Usunięto notatkę.');
+    }, error => {
+      this.spinner.hide();
+      this.toastr.error(error);
+    });
+  }
+
+  addNote(mode: string) {
+    this.note = {
+      text: this.newNote
+    };
+    this.cancelNote();
+   if (mode === 'customer') {
+      this.note.customerId = this.person.id;
+    } 
+    this.noteService.createNote(this.note).subscribe(() => {
+      this.toastr.success('Stworzono notatkę.');
+    }, error => {
+      this.toastr.error(error);
+    });
+}
 }

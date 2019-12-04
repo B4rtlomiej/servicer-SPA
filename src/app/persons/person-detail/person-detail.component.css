@@ -150,8 +150,21 @@ textarea:focus {
     margin-top: 12px;
     cursor: pointer;
 }
-#ticketsOfCustomer {
-    margin-left: 82%;
-    margin-top: 2%;
-    margin-bottom: 2%;
+
+.data-row:hover {
+    background-color: #008cba;
+}
+
+.data-row th, .data-row td {
+    vertical-align: middle;
+}
+
+.btn {
+    font-size: 0.8rem;
+}
+
+.name-span {
+    color: yellow;
+    font-weight: 500;
+    cursor: pointer;
 }
