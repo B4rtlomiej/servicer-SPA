@@ -5,6 +5,7 @@ import { TicketService } from 'src/app/_services/ticket.service';
 import { ToastrService } from 'src/app/_services/toastr.service';
 import { Pagination, PaginatedResult } from 'src/app/_models/pagination';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'app-all-tickets',
@@ -15,6 +16,7 @@ export class AllTicketsComponent implements OnInit {
   tickets: Ticket[];
   pagination: Pagination;
   ticketParams: any = {};
+  isAdmin = false;
 
   priorities = [
     { value: '0', display: 'Niski' },
@@ -29,10 +31,11 @@ export class AllTicketsComponent implements OnInit {
     { value: '3', display: 'Zamknięte' }
   ];
  
-  constructor(private route: ActivatedRoute, private router: Router, private ticketService: TicketService, private toastr: ToastrService,
-     private spinner: NgxSpinnerService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private ticketService: TicketService, private authService: AuthService,
+    private toastr: ToastrService, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
+    this.isAdmin = this.authService.isAdmin();
     this.route.data.subscribe(data => {
       this.tickets = data.tickets.result;
       this.pagination = data.tickets.pagination;

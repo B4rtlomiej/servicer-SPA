@@ -41,7 +41,6 @@
         <th scope="col">Stworzono</th>
         <th scope="col">Zamknięto</th>
         <th scope="col">Przypisany użytkownik</th>
-        <th scope="col"> </th>
         <th scope="col">Akcje</th>
       </tr>
     </thead>
@@ -64,16 +63,10 @@
         <td>{{ ticket.user?.username }}</td>
         <td>
           <div class="btn-group">
-              <button type="button" class="btn btn-warning w-110" (click)="pickUp(ticket.id)" *ngIf="ticket.user == null">
-                  Podejmij
-                </button>
-              </div>
-            </td>
-            <td>
-                <div class="btn-group">
-            <button type="button" class="btn btn-success" [routerLink]="['/tickets/', ticket.id]">
-              <i class="fa fa-edit mr-1"></i>Edytuj</button>
-            <button type="button" class="btn btn-danger" (click)="deleteTicket(ticket)">Usuń</button>
+            <button type="button" class="btn btn-success w-110" (click)="pickUp(ticket.id)" *ngIf="ticket.user == null">
+              Podejmij
+            </button>
+            <button type="button" class="btn btn-danger" *ngIf="isAdmin" (click)="deleteTicket(ticket)">Usuń</button>
           </div>
         </td>
       </tr>
