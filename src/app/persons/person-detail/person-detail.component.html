@@ -1,0 +1,125 @@
+<div class="wrapper">
+<div style="margin-top: 125px;"></div>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-7 person-container">
+        <div class="person-container__header row">
+            </div>
+            <div class="person-container__field col-sm-3">
+                <h4>Klient </h4>
+                <h3>K-{{ person.id }}</h3>
+            </div>
+        <hr class="container-line">
+        <div class="person-container__body">
+            <form [formGroup]="editForm" (ngSubmit)="editPerson()">
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-5">
+                        <h4>Imię</h4>
+                        <div class="input-container">
+                            <input type="text" class="form-control" formControlName="firstName" [ngClass]="{'is-invalid': editForm.get('firstName').errors && editForm.get('firstName').touched}">
+                            <i class="fa fa-pencil" *ngIf="!isViewMode"></i>
+                        </div>
+                    </div>
+                    <div class="col-1"></div>
+                    <div class="col-5">
+                        <h4>Nazwisko</h4>
+                        <div class="input-container">
+                            <input type="text" class="form-control" formControlName="lastName" [ngClass]="{'is-invalid': editForm.get('lastName').errors && editForm.get('lastName').touched}">
+                            <i class="fa fa-pencil" *ngIf="!isViewMode"></i>
+                        </div>
+                    </div>
+                    <div class="col-1"></div>
+                    <div class="col-5" style="margin-top: 2%;">
+                        <h4>E-mail</h4>
+                        <div class="input-container">
+                            <input type="text" class="form-control" formControlName="email" [ngClass]="{'is-invalid': editForm.get('email').errors && editForm.get('email').touched}">
+                            <i class="fa fa-pencil" *ngIf="!isViewMode"></i>
+                        </div>
+                    </div>
+                    <div class="col-1"></div>
+                    <div class="col-5" style="margin-top: 2%;">
+                        <h4>Phone</h4>
+                        <div class="input-container">
+                            <input type="text" class="form-control" formControlName="phone" [ngClass]="{'is-invalid': editForm.get('phone').errors && editForm.get('phone').touched}">
+                            <i class="fa fa-pencil" *ngIf="!isViewMode"></i>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="button-div">
+            <button class="btn btn-primary edit-button" (click)="editPerson()" *ngIf="isViewMode">Edytuj</button>
+            <button class="btn btn-info edit-button w-10" (click)="cancel()" *ngIf="!isViewMode">Odrzuć</button>
+            <button class="btn btn-primary edit-button w-10" (click)="update()" *ngIf="!isViewMode" [disabled]="!editForm.valid">Zapisz</button>
+        </div>
+    </div>
+    <div class="notes-container col-md-3">
+        <div class="notes-container__header">
+            <h1>Notatki</h1>
+        </div>
+        <hr class="container-line">
+         <div class="notes-container__body">
+            <accordion [isAnimated]="true">
+            <accordion-group heading="Dotyczące zgłaszającego">
+                <div class="row" *ngFor="let note of person.customerNotes">
+                  <div class="col-10">
+                    <p class="note-container">
+                      {{ note.text }}
+                    </p>
+                  </div>
+                  <div class="col-2" (click)="deleteNote(note.id)"><i class="fa fa-times note-icon" title="Usuń notatkę"></i></div>
+                </div>
+                <div class="add-button-container" *ngIf="!addCustomerNoteRowMode">
+                  <button class="btn btn-success" (click)="addNoteRow('customer')">
+                    <i class="fa fa-plus-circle mr-1"></i>
+                    Dodaj
+                  </button>
+                </div>
+                <textarea class="note-area" *ngIf="addCustomerNoteRowMode" [(ngModel)]="newNote"></textarea>
+                <div class="add-button-container" *ngIf="addCustomerNoteRowMode">
+                  <button class="btn btn-info edit-button" (click)="cancelNote()">Odrzuć</button>
+                  <button class="btn btn-primary edit-button" (click)="addNote('customer')">Dodaj</button>
+                </div>
+              </accordion-group>
+            </accordion>
+         </div>
+    </div>
+</div>
+<div class="row justify-content-center" style="margin-top: 3%;">
+    <table class="col-md-10 table table-info ">
+      <thead>
+        <tr *ngIf = 'isShow'>
+          <th scope="col">Temat</th>
+          <th scope="col">Model</th>
+          <th scope="col">Status</th>
+          <th scope="col">Priorytet</th>
+          <th scope="col">Rok Produkcji</th>
+          <th scope="col">Stworzono</th>
+          <th scope="col">Akcje</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="data-row" *ngFor="let ticket of tickets">
+          <td>
+              <span class="name-span" [routerLink]="['/tickets/', ticket.id]">
+                {{ ticket.subject }}
+              </span>
+          </td>
+          <td>
+              {{ ticket.item?.productSpecification?.series }} {{ ticket.item?.productSpecification?.name }}
+          </td>
+          <td>{{ ticket.status }}</td>
+          <td>{{ ticket.priority }}</td>
+          <td>{{ ticket.item?.productionYear | date: 'yyyy' }}</td>
+          <td>{{ ticket.created | date: 'H:mm, dd/MM/yyyy' }}</td>
+          <td>
+            <div class="btn-group">
+              <button type="button" class="btn btn-success" [routerLink]="['/tickets/', ticket.id]">
+                <i class="fa fa-edit mr-1"></i>Pokaż szczegóły</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
