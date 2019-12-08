@@ -109,7 +109,7 @@ export class PersonDetailComponent implements OnInit {
       }
     );
   }
-  
+
   loadCustomerTickets(id: number) {
     this.ticketParams.personId = id;
     this.ticketService.getCustomerTickets(1, 100, this.ticketParams)
@@ -123,7 +123,6 @@ export class PersonDetailComponent implements OnInit {
     });
   }
 
-  
   addNoteRow(mode: string) {
     this.cancelNote();
     if (mode === 'customer') {
@@ -137,17 +136,22 @@ export class PersonDetailComponent implements OnInit {
   }
 
   addNote(mode: string) {
+    this.spinner.show();
     this.note = {
       text: this.newNote
     };
     this.cancelNote();
-   if (mode === 'customer') {
+    if (mode === 'customer') {
       this.note.customerId = this.person.customerId;
     }
+
     this.noteService.createNote(this.note).subscribe(() => {
-        this.toastr.success('Stworzono notatkę.');
-      }, error => {
-        this.toastr.error(error);
+      this.loadPerson();
+      this.spinner.hide();
+      this.toastr.success('Stworzono notatkę.');
+    }, error => {
+      this.spinner.hide();
+      this.toastr.error(error);
     });
   }
 
