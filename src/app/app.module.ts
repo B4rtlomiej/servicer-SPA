@@ -25,6 +25,7 @@ import { UserActivateComponent } from './users/user-activate/user-activate.compo
 import { TicketListResolver } from './_resolvers/ticket-list.resolver';
 import { TicketDetailComponent } from './tickets/ticket-detail/ticket-detail.component';
 import { TicketDetailResolver } from './_resolvers/ticket-detail.resolver';
+import { ReportsResolver } from './_resolvers/reports.resolver';
 import { ProductSpecificationListComponent }
    from './product-specifications/product-specification-list/product-specification-list.component';
 import { ProductSpecificationListResolver } from './_resolvers/product-specification-list.resolver';
@@ -32,6 +33,9 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { ChartsModule } from 'ng2-charts';
+import { ChartDataSets, ChartType, RadialChartOptions } from 'chart.js';
+import { ReportsComponent } from './reports/reports/reports.component';
 
 export function tokenRetriver() {
    return localStorage.getItem('token');
@@ -51,7 +55,8 @@ export function tokenRetriver() {
       UserDetailComponent,
       UserRegisterComponent,
       UserActivateComponent,
-      ProductSpecificationListComponent
+      ProductSpecificationListComponent,
+      ReportsComponent
    ],
    imports: [
       BrowserModule,
@@ -72,7 +77,8 @@ export function tokenRetriver() {
       ModalModule.forRoot(),
       NgxSpinnerModule,
       AccordionModule.forRoot(),
-      BrowserAnimationsModule
+      BrowserAnimationsModule,
+      ChartsModule
    ],
    providers: [
       AuthService,
@@ -81,7 +87,8 @@ export function tokenRetriver() {
       UserListResolver,
       TicketDetailResolver,
       TicketListResolver,
-      ProductSpecificationListResolver
+      ProductSpecificationListResolver,
+      ReportsResolver
    ],
    bootstrap: [
       AppComponent
