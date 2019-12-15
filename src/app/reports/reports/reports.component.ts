@@ -36,15 +36,15 @@ export class ReportsComponent implements OnInit {
   barChartOptions: ChartOptions = {
     responsive: true,
   };
-  barChartLabels: Label[] = ['Apple', 'Banana', 'Kiwifruit', 'Blueberry', 'Orange', 'Grapes',
-    'Apple', 'Banana', 'Kiwifruit', 'Blueberry', 'Orange', 'Grapes'];
+  barChartLabels: Label[] = ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec',
+    'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'];
   barChartType: ChartType = 'bar';
   barChartLegend = true;
   barChartPlugins = [];
 
   barChartData: ChartDataSets[] = [
-    { data: [45, 37, 60, 70, 46, 33, 45, 37, 60, 70, 46, 33], label: 'Zamkniętych zgłoszeń' },
-    { data: [45, 37, 60, 70, 46, 33, 45, 37, 60, 70, 46, 33], label: 'Zgłoszeń' }
+    { data: [0, 0, 0, 0, 0, 7, 11, 15, 12, 18, 38, 47], label: 'Zgłoszeń' },
+    { data: [0, 0, 0, 0, 0, 7, 11, 11, 16, 15, 34, 22], label: 'Zamkniętych zgłoszeń' }
   ];
 
   reports: any;
