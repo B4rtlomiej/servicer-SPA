@@ -17,6 +17,8 @@ import { TicketDetailResolver } from './_resolvers/ticket-detail.resolver';
 import { ProductSpecificationListComponent }
     from './product-specifications/product-specification-list/product-specification-list.component';
 import { ProductSpecificationListResolver } from './_resolvers/product-specification-list.resolver';
+import { ReportsComponent } from './reports/reports/reports.component';
+import { ReportsResolver } from './_resolvers/reports.resolver';
 import { PersonListResolver } from './_resolvers/person-list.resolver';
 import { PersonListComponent } from './persons/person-list/person-list.component';
 import { PersonDetailComponent } from './persons/person-detail/person-detail.component';
@@ -33,6 +35,7 @@ export const appRoutes: Routes = [
             { path: 'mytickets', component: MyTicketsComponent, resolve: { mytickets: TicketListResolver } },
             { path: 'tickets', component: AllTicketsComponent, resolve: { tickets: TicketListResolver } },
             { path: 'tickets/:id', component: TicketDetailComponent, resolve: { ticket: TicketDetailResolver } },
+            { path: 'reports', component: ReportsComponent, resolve: { reports: ReportsResolver } },
             { path: 'persons', component: PersonListComponent, resolve: { persons: PersonListResolver } },
             { path: 'persons/:id', component: PersonDetailComponent, resolve: { person: PersonDetailResolver } },
         ]
