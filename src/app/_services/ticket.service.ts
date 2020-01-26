@@ -40,6 +40,10 @@ export class TicketService {
       params = params.append('orderBy', ticketParams.orderBy);
     }
 
+    if (ticketParams && ticketParams.personId) {
+      params = params.append('personId', ticketParams.personId);
+    }
+
     return this.http.get<Ticket[]>(this.baseUrl + 'tickets', {observe: 'response', params})
     .pipe(
       map(response => {
@@ -52,6 +56,32 @@ export class TicketService {
     );
   }
 
+  getCustomerTickets(page?, itemsPerPage?, ticketParams?): Observable<PaginatedResult<Ticket[]>> {
+    const paginatedResult: PaginatedResult<Ticket[]> = new PaginatedResult<Ticket[]>();
+    
+    let params = new HttpParams();
+
+    if(page != null && itemsPerPage != null) {
+      params = params.append('pageNumber', page);
+      params = params.append('pageSize', itemsPerPage);
+    }
+
+    if (ticketParams && ticketParams.personId) {
+      params = params.append('personId', ticketParams.personId);
+    }
+
+    return this.http.get<Ticket[]>(this.baseUrl + 'tickets/customertickets', {observe: 'response', params})
+    .pipe(
+      map(response => {
+        paginatedResult.result = response.body;
+        if(response.headers.get('Pagination')!=null) {
+          paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'))
+        }
+        return paginatedResult;
+      })
+    );
+  }
+  
   getTicket(id: number): Observable<Ticket> {
     return this.http.get<Ticket>(this.baseUrl + 'tickets/' + id);
   }
@@ -78,5 +108,9 @@ export class TicketService {
     return this.http.post(this.baseUrl + 'tickets/' + id + '/close', {
       token: localStorage.getItem('token')
     });
+  }
+
+  customerTickets(id: number) {
+    return this.http.get(this.baseUrl + 'tickets/customertickets/');
   }
 }

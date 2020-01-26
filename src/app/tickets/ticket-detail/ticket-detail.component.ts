@@ -46,7 +46,7 @@ export class TicketDetailComponent implements OnInit {
       this.createEditForm();
     }, error => {
       this.toastr.error(error);
-    });;
+    });
   }
 
   createEditForm() {

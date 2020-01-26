@@ -29,14 +29,14 @@
 </form>
 
 <div class="row justify-content-center">
-  <table class="col-md-10 table table-info ">
+  <table class="col-md-10 table table-info">
     <thead>
       <tr>
         <th scope="col">Id</th>
-        <th scope="col">Nazwa</th>
+        <th scope="col">Temat</th>
+        <th scope="col">Model</th>
         <th scope="col">Status</th>
         <th scope="col">Priorytet</th>
-        <th scope="col">Temat</th>
         <th scope="col">Rok Produkcji</th>
         <th scope="col">Stworzono</th>
         <th scope="col">Zamknięto</th>
@@ -48,13 +48,15 @@
       <tr class="data-row" *ngFor="let ticket of tickets">
         <th scope="row">{{ ticket.id }}</th>
         <td>
-          <span class="name-span" [routerLink]="['/tickets/', ticket.id]">
+            <span class="name-span" [routerLink]="['/tickets/', ticket.id]">
+              {{ ticket.subject }}
+            </span>
+        </td>
+        <td>
             {{ ticket.item?.productSpecification?.series }} {{ ticket.item?.productSpecification?.name }}
-          </span>
         </td>
         <td>{{ ticket.status }}</td>
         <td>{{ ticket.priority }}</td>
-        <td>{{ ticket.subject }}</td>
         <td>{{ ticket.item?.productionYear | date: 'yyyy' }}</td>
         <td>{{ ticket.created | date: 'H:mm, dd/MM/yyyy' }}</td>
         <td>{{ ticket.closed | date: 'H:mm, dd/MM/yyyy' }}</td>

@@ -5,7 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { BsDropdownModule, PaginationModule, ButtonsModule } from 'ngx-bootstrap';
 import { JwtModule } from '@auth0/angular-jwt';
-
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { AuthService } from './_services/auth.service';
@@ -36,6 +35,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ChartsModule } from 'ng2-charts';
 import { ChartDataSets, ChartType, RadialChartOptions } from 'chart.js';
 import { ReportsComponent } from './reports/reports/reports.component';
+import { PersonListResolver } from './_resolvers/person-list.resolver';
+import { PersonListComponent } from './persons/person-list/person-list.component';
+import { PersonDetailComponent } from './persons/person-detail/person-detail.component';
+import { PersonDetailResolver } from './_resolvers/person-detail.resolver';
 
 export function tokenRetriver() {
    return localStorage.getItem('token');
@@ -56,7 +59,9 @@ export function tokenRetriver() {
       UserRegisterComponent,
       UserActivateComponent,
       ProductSpecificationListComponent,
-      ReportsComponent
+      ReportsComponent,
+      PersonListComponent,
+      PersonDetailComponent
    ],
    imports: [
       BrowserModule,
@@ -88,7 +93,9 @@ export function tokenRetriver() {
       TicketDetailResolver,
       TicketListResolver,
       ProductSpecificationListResolver,
-      ReportsResolver
+      ReportsResolver,
+      PersonListResolver,
+      PersonDetailResolver
    ],
    bootstrap: [
       AppComponent
