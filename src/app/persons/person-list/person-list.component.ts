@@ -94,8 +94,6 @@ export class PersonListComponent implements OnInit {
     .subscribe(
       (res: PaginatedResult<Ticket[]>) => {
       this.tickets = res.result;
-      console.log(res);
-      console.log(res.result);
       this.pagination = res.pagination;
     }, error => {
       this.toastr.error(error);

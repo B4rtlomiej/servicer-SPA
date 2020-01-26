@@ -35,6 +35,13 @@ export class ReportsComponent implements OnInit {
 
   barChartOptions: ChartOptions = {
     responsive: true,
+    scales: {
+      yAxes: [{
+          ticks: {
+              stepSize: 1
+          }
+      }]
+  }
   };
   barChartLabels: Label[] = ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec',
     'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'];
@@ -42,10 +49,7 @@ export class ReportsComponent implements OnInit {
   barChartLegend = true;
   barChartPlugins = [];
 
-  barChartData: ChartDataSets[] = [
-    { data: [0, 0, 0, 0, 0, 7, 11, 15, 12, 18, 38, 47], label: 'Zgłoszeń' },
-    { data: [0, 0, 0, 0, 0, 7, 11, 11, 16, 15, 34, 22], label: 'Zamkniętych zgłoszeń' }
-  ];
+  barChartData: ChartDataSets[] = [];
 
   reports: any;
 
@@ -67,6 +71,21 @@ export class ReportsComponent implements OnInit {
       this.mostProductTicketsLabels.push(`${ticket.Manufacturer} ${ticket.Series} ${ticket.Name}`);
       this.mostProductTicketsData.push(ticket.TicketCount);
     });
+
+    const ticketsByMonths = JSON.parse(this.reports.ticketsByMonths);
+    const ticketsByMonthsData = [];
+    ticketsByMonths.forEach(ticket => {
+      ticketsByMonthsData.push(ticket.TicketCount);
+    });
+
+    const closedTicketsByMonths = JSON.parse(this.reports.closedTicketsByMonths);
+    const closedTicketsByMonthsData = [];
+    closedTicketsByMonths.forEach(ticket => {
+      closedTicketsByMonthsData.push(ticket.TicketCount);
+    });
+
+    this.barChartData.push({ data: ticketsByMonthsData, label: 'Zgłoszeń'});
+    this.barChartData.push({ data: closedTicketsByMonthsData, label: 'Zamkniętych zgłoszeń'});
 
     window.dispatchEvent(new Event('resize'));
   }

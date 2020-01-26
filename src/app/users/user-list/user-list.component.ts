@@ -16,7 +16,6 @@ export class UserListComponent implements OnInit {
   users: User[];
   roleList = [
     { value: 'Admin', display: 'Admin' },
-    { value: 'Manager', display: 'Manager' },
     { value: 'Agent', display: 'Agent' }
   ];
   activeInactiveList = [

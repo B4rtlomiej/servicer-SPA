@@ -17,7 +17,7 @@
       </div>
       <div class="ticket-container__field col-md-3">
         <h4>Zgłaszający</h4>
-        <a href="/">
+        <a [routerLink]="['/persons/', ticket.item.customer.person.id]">
           <h3>{{ ticket.item.customer.person.firstName }} {{ ticket.item.customer.person.lastName }}</h3>
         </a>
       </div>
@@ -66,9 +66,7 @@
           <div class="col-1"></div>
           <div class="col-5">
             <h4>Model</h4>
-            <a href="/">
               <h3>{{ ticket.item?.productSpecification?.series }} {{ ticket.item?.productSpecification?.name }}</h3>
-            </a>
           </div>
           <div class="col-5">
             <h4>Rocznik</h4>
